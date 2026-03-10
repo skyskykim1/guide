@@ -505,6 +505,24 @@ footer strong { color: var(--gold-light); }
 .map-iframe-wrap { overflow: hidden; }
 .map-iframe-wrap iframe { width: 100%; height: 500px; border: none; display: block; }
 
+/* ===== PRODUCT IMAGES ===== */
+.product-img {
+  width: 100%; border-radius: 12px; margin-bottom: 16px;
+  display: block; box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  border: 1px solid var(--border);
+}
+.product-img-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px;
+}
+.product-img-row img {
+  width: 100%; border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+@media (max-width: 480px) {
+  .product-img-row { grid-template-columns: 1fr; }
+}
+
 /* ===== MISC ===== */
 .tip-box {
   background: linear-gradient(135deg, #FFFBEB, #FFF8E1);
@@ -2458,6 +2476,7 @@ section:nth-of-type(odd) { background: transparent; }
   <div class="accordion">
     <div class="accordion-header" onclick="toggleAccordion(this)">💊 감기약 <span class="acc-icon">▼</span></div>
     <div class="accordion-body">
+      <img src="images/약국-감기약.png" class="product-img" alt="감기약 추천">
       <div class="cards-grid">
         <div style="background:#F9F9F9;border-radius:8px;padding:12px;font-size:0.82rem;">
           <strong>스트렙실 (Strepsils)</strong><br>
@@ -2496,6 +2515,7 @@ section:nth-of-type(odd) { background: transparent; }
   <div class="accordion">
     <div class="accordion-header" onclick="toggleAccordion(this)">🐯 근육통약 <span class="acc-icon">▼</span></div>
     <div class="accordion-body">
+      <img src="images/약국-근육통약.png" class="product-img" alt="근육통약 추천">
       <div class="cards-grid">
         <div style="background:#F9F9F9;border-radius:8px;padding:12px;font-size:0.82rem;">
           <strong>타이거밤 (Tiger Balm)</strong><br>
@@ -2525,6 +2545,10 @@ section:nth-of-type(odd) { background: transparent; }
   <div class="accordion">
     <div class="accordion-header" onclick="toggleAccordion(this)">🧴 바르는 연고 <span class="acc-icon">▼</span></div>
     <div class="accordion-body">
+      <div class="product-img-row">
+        <img src="images/약국-연고1.png" alt="바르는연고 추천1">
+        <img src="images/약국-연고2.png" alt="바르는연고 추천2">
+      </div>
       <div class="cards-grid">
         <div style="background:#F9F9F9;border-radius:8px;padding:12px;font-size:0.82rem;">
           <strong>베판텐 (Bepanthen)</strong><br>
@@ -2563,6 +2587,10 @@ section:nth-of-type(odd) { background: transparent; }
   <div class="accordion">
     <div class="accordion-header" onclick="toggleAccordion(this)">🌿 영양제 & 소화약 <span class="acc-icon">▼</span></div>
     <div class="accordion-body">
+      <div class="product-img-row">
+        <img src="images/약국-영양제.png" alt="영양제 추천">
+        <img src="images/약국-소화불량.png" alt="소화불량약 추천">
+      </div>
       <div class="two-col">
         <div>
           <p style="font-weight:700;font-size:0.85rem;margin-bottom:8px;">영양제</p>
@@ -2588,6 +2616,7 @@ section:nth-of-type(odd) { background: transparent; }
   <div class="accordion">
     <div class="accordion-header" onclick="toggleAccordion(this)">🩹 기타 약국 쇼핑 <span class="acc-icon">▼</span></div>
     <div class="accordion-body">
+      <img src="images/약국-기타.png" class="product-img" alt="기타 약국 쇼핑">
       <div class="cards-grid">
         <div style="background:#F9F9F9;border-radius:8px;padding:12px;font-size:0.82rem;">
           <strong>쇼웰/레모스</strong><br>
@@ -2622,6 +2651,7 @@ section:nth-of-type(odd) { background: transparent; }
   <div class="accordion">
     <div class="accordion-header" onclick="toggleAccordion(this)">☕ 베트남 커피 <span class="acc-icon">▼</span></div>
     <div class="accordion-body">
+      <img src="images/식품-커피.png" class="product-img" alt="베트남 커피 추천">
       <div class="cards-grid">
         <div style="background:#FFF8E1;border-radius:8px;padding:12px;font-size:0.82rem;">
           <strong>G7 커피</strong><br>
@@ -2646,6 +2676,7 @@ section:nth-of-type(odd) { background: transparent; }
   <div class="accordion">
     <div class="accordion-header" onclick="toggleAccordion(this)">🥜 견과류 (선물 강추) <span class="acc-icon">▼</span></div>
     <div class="accordion-body">
+      <img src="images/식품-견과류.png" class="product-img" alt="베트남 견과류 추천">
       <div class="cards-grid">
         <div style="background:#FFF3E0;border-radius:8px;padding:12px;font-size:0.82rem;">
           <strong>캐슈넛 (Hạt điều)</strong><br>
@@ -2672,6 +2703,11 @@ section:nth-of-type(odd) { background: transparent; }
   <div class="accordion">
     <div class="accordion-header" onclick="toggleAccordion(this)">🍬 과자 · 젤리 · 라면 <span class="acc-icon">▼</span></div>
     <div class="accordion-body">
+      <div class="product-img-row" style="grid-template-columns:1fr 1fr 1fr;">
+        <img src="images/식품-과자라자.png" alt="베트남 과자 라자">
+        <img src="images/식품-젤리캔디1.png" alt="베트남 젤리 캔디1">
+        <img src="images/식품-라면.png" alt="베트남 라면">
+      </div>
       <div class="two-col">
         <div>
           <p style="font-weight:700;font-size:0.85rem;margin-bottom:6px;">젤리 & 캔디</p>
