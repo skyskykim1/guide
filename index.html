@@ -722,7 +722,7 @@ section:nth-of-type(odd) { background: transparent; }
 .memo-save:active { transform: scale(0.98); }
 #memo, #memo * { pointer-events: auto; }
 
-/* ===== GIST 동기화 ===== */
+/* ===== 구글시트 동기화 ===== */
 .sync-btn {
   background: none; border: 1px solid var(--border); border-radius: 8px;
   padding: 5px 10px; font-size: 0.82rem; cursor: pointer;
@@ -3640,184 +3640,36 @@ section:nth-of-type(odd) { background: transparent; }
 </footer>
 
 <script>
-// ===== GIST 동기화 모듈 =====
-const GistSync = (function() {
-  const TOKEN_KEY = 'pq_gh_token';
-  const GIST_ID_KEY = 'pq_gist_id';
-  const FILENAME = 'phuquoc-data.json';
-  const API = 'https://api.github.com';
+// ===== 구글시트 동기화 모듈 =====
+const SHEETS_URL = 'https://script.google.com/macros/s/AKfycby416IOeHHOm7uMDCT_7t6bH24ZGYkoKikz-nPCtFNLoJFuh-bSXMZtiS3Usdk8qPfePw/exec';
 
-  function getToken() { return localStorage.getItem(TOKEN_KEY) || ''; }
-  function getGistId() { return localStorage.getItem(GIST_ID_KEY) || ''; }
-  function isConnected() { return !!(getToken() && getGistId()); }
-
-  function headers(token) {
-    return { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' };
-  }
-
-  async function findGist(token) {
-    const res = await fetch(API + '/gists?per_page=100', { headers: headers(token) });
-    if (!res.ok) throw new Error('인증 실패 (' + res.status + ')');
-    const list = await res.json();
-    const found = list.find(g => g.files && g.files[FILENAME]);
-    return found ? found.id : null;
-  }
-
-  async function load() {
-    const token = getToken(), gistId = getGistId();
-    if (!token || !gistId) return null;
+const SheetsSync = {
+  async load() {
     try {
-      const res = await fetch(API + '/gists/' + gistId, { headers: headers(token) });
+      const res = await fetch(SHEETS_URL);
       if (!res.ok) return null;
-      const gist = await res.json();
-      const content = gist.files?.[FILENAME]?.content;
-      return content ? JSON.parse(content) : null;
+      const text = await res.text();
+      return text ? JSON.parse(text) : null;
     } catch(e) { return null; }
-  }
-
-  async function save(payload) {
-    const token = getToken();
-    if (!token) return false;
-    let gistId = getGistId();
-    const body = JSON.stringify({
-      description: '푸꾸옥 여행 데이터 (가계부+메모)',
-      public: false,
-      files: { [FILENAME]: { content: JSON.stringify(payload, null, 2) } }
-    });
+  },
+  async save(payload) {
     try {
-      let res;
-      if (gistId) {
-        res = await fetch(API + '/gists/' + gistId, { method: 'PATCH', headers: headers(token), body });
-      } else {
-        res = await fetch(API + '/gists', { method: 'POST', headers: headers(token), body });
-        if (res.ok) {
-          const data = await res.json();
-          localStorage.setItem(GIST_ID_KEY, data.id);
-        }
-      }
-      return res && res.ok;
+      const res = await fetch(SHEETS_URL, {
+        method: 'POST',
+        body: JSON.stringify(payload)
+      });
+      return res.ok;
     } catch(e) { return false; }
   }
+};
 
-  async function connect(token) {
-    const gistId = await findGist(token);
-    localStorage.setItem(TOKEN_KEY, token);
-    if (gistId) { localStorage.setItem(GIST_ID_KEY, gistId); return { found: true, id: gistId }; }
-    localStorage.removeItem(GIST_ID_KEY);
-    return { found: false };
-  }
-
-  function disconnect() {
-    localStorage.removeItem(TOKEN_KEY);
-    localStorage.removeItem(GIST_ID_KEY);
-  }
-
-  return { getToken, getGistId, isConnected, load, save, connect, disconnect, FILENAME };
-})();
-
-// 동기화 모달 UI
-function updateSyncBtn() {
-  const btn = document.getElementById('syncNavBtn');
-  if (!btn) return;
-  if (GistSync.isConnected()) {
-    btn.textContent = '☁️ 동기화됨';
-    btn.classList.add('connected');
-  } else {
-    btn.textContent = '☁️ 동기화';
-    btn.classList.remove('connected');
-  }
-}
-
-function openSyncModal() {
-  const modal = document.getElementById('syncModal');
-  const body = document.getElementById('syncModalBody');
-  if (!modal || !body) return;
-
-  const connected = GistSync.isConnected();
-  if (connected) {
-    body.innerHTML = `
-      <p style="font-size:0.88rem;color:#2E7D32;margin-bottom:12px;">✅ 동기화 연결됨</p>
-      <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:16px;">Gist ID: <code style="font-size:0.75rem">${GistSync.getGistId()}</code></p>
-      <div class="sync-status" id="syncStatus"></div>
-      <div class="sync-row">
-        <button class="sync-connect-btn" onclick="syncNow()">🔄 지금 동기화</button>
-        <button class="sync-cancel-btn" onclick="closeSyncModal()">닫기</button>
-      </div>
-      <span class="sync-disconnect" onclick="doDisconnect()">연결 해제</span>`;
-  } else {
-    body.innerHTML = `
-      <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:12px;">GitHub Personal Access Token을 입력하면 모든 기기에서 가계부·메모가 동기화됩니다.</p>
-      <input class="sync-input" type="password" id="syncTokenInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
-      <div class="sync-status" id="syncStatus"></div>
-      <div class="sync-row">
-        <button class="sync-connect-btn" id="syncConnectBtn" onclick="doConnect()">연결하기</button>
-        <button class="sync-cancel-btn" onclick="closeSyncModal()">취소</button>
-      </div>
-      <div class="sync-guide">
-        🔑 토큰 발급 방법:<br>
-        <a href="https://github.com/settings/tokens/new" target="_blank">github.com → Settings → Developer settings → Personal access tokens → Tokens (classic)</a><br>
-        → <strong>Gist</strong> 권한만 체크 후 생성<br>
-        → 토큰은 각 기기에서 한 번만 입력하면 됩니다
-      </div>`;
-  }
-  modal.style.display = 'flex';
-}
-
-function closeSyncModal() {
-  document.getElementById('syncModal').style.display = 'none';
-}
-
-async function doConnect() {
-  const token = document.getElementById('syncTokenInput').value.trim();
-  const status = document.getElementById('syncStatus');
-  const btn = document.getElementById('syncConnectBtn');
-  if (!token) { status.innerHTML = '<span class="sync-err">토큰을 입력해주세요</span>'; return; }
-
-  btn.disabled = true;
-  status.innerHTML = '<span class="sync-info">연결 중...</span>';
-
-  try {
-    const result = await GistSync.connect(token);
-    if (result.found) {
-      status.innerHTML = '<span class="sync-ok">✅ 기존 데이터 발견! 불러오는 중...</span>';
-      await loadFromGist();
-      status.innerHTML = '<span class="sync-ok">✅ 연결 완료, 데이터를 불러왔습니다</span>';
-    } else {
-      status.innerHTML = '<span class="sync-ok">✅ 연결 완료 (첫 저장 시 Gist 자동 생성)</span>';
-    }
-    updateSyncBtn();
-    setTimeout(openSyncModal, 1200);
-  } catch(e) {
-    status.innerHTML = '<span class="sync-err">❌ ' + (e.message || '연결 실패') + '</span>';
-    btn.disabled = false;
-  }
-}
-
-async function syncNow() {
-  const status = document.getElementById('syncStatus');
-  status.innerHTML = '<span class="sync-info">동기화 중...</span>';
-  const ok = await pushAllToGist();
-  status.innerHTML = ok
-    ? '<span class="sync-ok">✅ 저장 완료</span>'
-    : '<span class="sync-err">❌ 동기화 실패</span>';
-}
-
-function doDisconnect() {
-  if (!confirm('동기화 연결을 해제할까요?\n(로컬 데이터는 유지됩니다)')) return;
-  GistSync.disconnect();
-  updateSyncBtn();
-  closeSyncModal();
-}
-
-async function pushAllToGist() {
-  if (!GistSync.getToken()) return false;
+function getLocalPayload() {
   const ledger = JSON.parse(localStorage.getItem('pq-ledger-2026') || '{"groups":[[],[],[],[]]}');
   const memo = { text: localStorage.getItem('phuquoc_memo') || '', savedAt: localStorage.getItem('phuquoc_memo_time') || '' };
-  return await GistSync.save({ ledger, memo });
+  return { ledger, memo };
 }
 
-async function loadFromGist() {
-  const remote = await GistSync.load();
+function applyRemoteData(remote) {
   if (!remote) return;
   if (remote.ledger) {
     localStorage.setItem('pq-ledger-2026', JSON.stringify(remote.ledger));
@@ -3833,10 +3685,77 @@ async function loadFromGist() {
   }
 }
 
-// 페이지 로드 시 Gist에서 불러오기
+// 서버에서 불러오기 (페이지 로드시 자동)
+async function loadFromSheets() {
+  const remote = await SheetsSync.load();
+  applyRemoteData(remote);
+}
+
+// 서버에 저장 (가계부/메모 저장 시 자동 호출)
+async function pushToSheets() {
+  return await SheetsSync.save(getLocalPayload());
+}
+
+// 동기화 버튼/모달 UI
+function updateSyncBtn(ok) {
+  const btn = document.getElementById('syncNavBtn');
+  if (!btn) return;
+  if (ok === true) {
+    btn.textContent = '☁️ 저장됨';
+    btn.classList.add('connected');
+    setTimeout(() => { btn.textContent = '☁️ 동기화'; btn.classList.remove('connected'); }, 3000);
+  } else {
+    btn.textContent = '☁️ 동기화';
+    btn.classList.remove('connected');
+  }
+}
+
+function openSyncModal() {
+  const modal = document.getElementById('syncModal');
+  const body = document.getElementById('syncModalBody');
+  if (!modal || !body) return;
+  body.innerHTML = `
+    <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:16px;">구글시트에 가계부·메모를 저장하거나 불러옵니다.<br>가족 모두가 같은 데이터를 볼 수 있어요.</p>
+    <div class="sync-status" id="syncStatus"></div>
+    <div class="sync-row" style="margin-bottom:8px">
+      <button class="sync-connect-btn" onclick="syncLoad()">📥 서버에서 불러오기</button>
+      <button class="sync-connect-btn" style="background:var(--gold)" onclick="syncSave()">📤 서버에 저장</button>
+    </div>
+    <div class="sync-row">
+      <button class="sync-cancel-btn" style="flex:1" onclick="closeSyncModal()">닫기</button>
+    </div>`;
+  modal.style.display = 'flex';
+}
+
+function closeSyncModal() {
+  document.getElementById('syncModal').style.display = 'none';
+}
+
+async function syncLoad() {
+  const status = document.getElementById('syncStatus');
+  status.innerHTML = '<span class="sync-info">불러오는 중...</span>';
+  const remote = await SheetsSync.load();
+  if (remote) {
+    applyRemoteData(remote);
+    status.innerHTML = '<span class="sync-ok">✅ 최신 데이터를 불러왔습니다</span>';
+  } else {
+    status.innerHTML = '<span class="sync-err">❌ 불러오기 실패 (네트워크 확인)</span>';
+  }
+}
+
+async function syncSave() {
+  const status = document.getElementById('syncStatus');
+  status.innerHTML = '<span class="sync-info">저장 중...</span>';
+  const ok = await pushToSheets();
+  status.innerHTML = ok
+    ? '<span class="sync-ok">✅ 구글시트에 저장했습니다</span>'
+    : '<span class="sync-err">❌ 저장 실패 (네트워크 확인)</span>';
+  updateSyncBtn(ok);
+}
+
+// 페이지 로드 시 구글시트에서 불러오기
 document.addEventListener('DOMContentLoaded', function() {
-  updateSyncBtn();
-  if (GistSync.isConnected()) loadFromGist();
+  loadFromSheets();
 });
 
 // 메모장
@@ -3867,7 +3786,7 @@ document.addEventListener('DOMContentLoaded', function() {
     localStorage.setItem(MEMO_KEY, ta.value);
     localStorage.setItem(MEMO_TIME_KEY, now);
     updateMemoTime(now);
-    pushAllToGist();
+    pushToSheets();
     const btn = document.querySelector('.memo-save');
     if (btn) {
       const orig = btn.textContent;
@@ -3994,7 +3913,7 @@ if (scrollTopBtn) {
 
   function save() {
     localStorage.setItem(LEDGER_KEY, JSON.stringify(data));
-    pushAllToGist();
+    pushToSheets();
   }
 
   window.ldReload = function(newData) {
@@ -4139,11 +4058,11 @@ if (scrollTopBtn) {
 })();
 </script>
 
-<!-- ===== GIST 동기화 모달 ===== -->
+<!-- ===== 구글시트 동기화 모달 ===== -->
 <div id="syncModal" class="sync-overlay" style="display:none" onclick="if(event.target===this)closeSyncModal()">
   <div class="sync-modal">
     <div class="sync-modal-header">
-      <h3>☁️ GitHub 동기화</h3>
+      <h3>☁️ 구글시트 동기화</h3>
       <button onclick="closeSyncModal()">✕</button>
     </div>
     <div id="syncModalBody"></div>
