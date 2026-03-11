@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>푸꾸옥 가족여행 2026 — A5 포켓 가이드</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    @page { size: A4 landscape; margin: 0; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; box-sizing: border-box; }
+    body { margin: 0; padding: 0; font-family: 'Noto Sans KR', sans-serif; font-size: 8.5pt; line-height: 1.4; color: #212121; }
+
+    .a4-sheet {
+      width: 297mm; height: 210mm;
+      display: flex; flex-direction: row;
+      page-break-after: always; break-after: page;
+      overflow: hidden; background: white;
+    }
+    .a4-sheet:last-child { page-break-after: avoid; break-after: avoid; }
+
+    .a5-page {
+      width: 148.5mm; height: 210mm;
+      padding: 7mm 8mm;
+      overflow: hidden; position: relative; background: white;
+    }
+    .a5-page.left { border-right: 1px dashed #bbb; }
+
+    .pg-num { position: absolute; bottom: 4mm; right: 5mm; font-size: 6pt; color: #999; }
+
+    h1,h2,h3 { margin: 0; }
+    p { margin: 0 0 4px 0; }
+    ul,ol { margin: 2px 0 4px 0; padding-left: 14px; }
+    li { margin: 1px 0; }
+    table { width: 100%; border-collapse: collapse; font-size: 7pt; }
+    th,td { padding: 3px 4px; text-align: left; border: 0.5px solid #e0e0e0; }
+    th { font-weight: 700; }
+
+    .sec-title { font-size: 9.5pt; font-weight: 900; margin: 0 0 5px 0; padding: 3px 6px; border-radius: 3px; }
+    .row { display: flex; gap: 4px; margin-bottom: 4px; }
+    .col2 { flex: 1; }
+
+    .tl-item { display: flex; gap: 4px; margin-bottom: 3px; align-items: flex-start; }
+    .tl-time { font-size: 6.5pt; color: #666; white-space: nowrap; min-width: 25px; font-weight: 700; padding-top: 1px; }
+    .tl-title { font-weight: 700; font-size: 8pt; }
+    .tl-desc { font-size: 6.5pt; color: #555; }
+
+    .spot-img { width: 100%; max-height: 45mm; object-fit: cover; border-radius: 4px; margin-bottom: 4px; }
+    .spot-img-sm { width: 100%; max-height: 28mm; object-fit: cover; border-radius: 3px; margin-bottom: 3px; }
+
+    .review-card { background: #F5F5F5; border-radius: 4px; padding: 4px 6px; margin-bottom: 4px; font-size: 7pt; }
+    .review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px; }
+    .review-name { font-weight: 700; font-size: 8pt; }
+    .stars { color: #F9A825; font-size: 8pt; }
+    .review-info { display: flex; gap: 6px; font-size: 6.5pt; color: #555; flex-wrap: wrap; }
+    .review-text { font-size: 7pt; color: #444; font-style: italic; margin-top: 2px; }
+
+    .tip-box { background: #FFF8E1; border-left: 3px solid #F9A825; padding: 4px 6px; margin-bottom: 4px; border-radius: 0 3px 3px 0; font-size: 7pt; }
+    .info-box { background: #E3F2FD; border-left: 3px solid #1E88E5; padding: 4px 6px; margin-bottom: 4px; border-radius: 0 3px 3px 0; font-size: 7.5pt; }
+
+    .day1-bg { background: linear-gradient(135deg,#006064,#00897B); color: white; }
+    .day2-bg { background: linear-gradient(135deg,#1B5E20,#2E7D32); color: white; }
+    .day3-bg { background: linear-gradient(135deg,#BF360C,#E64A19); color: white; }
+    .day4-bg { background: linear-gradient(135deg,#4A148C,#6A1B9A); color: white; }
+    .day5-bg { background: linear-gradient(135deg,#263238,#455A64); color: white; }
+
+    .cl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px 6px; }
+    .cl-item { font-size: 7pt; display: flex; align-items: center; gap: 3px; }
+    .cl-box { width: 8px; height: 8px; border: 1px solid #666; flex-shrink: 0; border-radius: 1px; }
+    .cl-title { font-size: 8pt; font-weight: 700; margin: 5px 0 2px 0; color: #333; }
+
+    .emer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+    .emer-item { background: #FFEBEE; border-radius: 3px; padding: 4px 6px; }
+    .emer-name { font-size: 6.5pt; color: #666; }
+    .emer-num { font-size: 9pt; font-weight: 900; color: #C62828; }
+
+    .fx-tip { background: #E0F7FA; border-radius: 4px; padding: 4px 8px; font-size: 7.5pt; text-align: center; font-weight: 700; margin-bottom: 4px; }
+
+    @media screen { body { padding: 20px; background: #e0e0e0; } .a4-sheet { box-shadow: 0 4px 12px rgba(0,0,0,0.3); margin-bottom: 24px; } }
+    @media print { body { background: white; padding: 0; } .a4-sheet { margin: 0; box-shadow: none; } }
+  </style>
+</head>
+<body>
+
+<!-- ===== SHEET 1: 표지 + 빠른참조 ===== -->
+<div class="a4-sheet">
+
+  <!-- Page 1: 표지 -->
+  <div class="a5-page left" style="padding:0;">
+    <div style="position:relative;width:100%;height:100%;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Bai-sao-phu-quoc-tuonglamphotos.jpg/600px-Bai-sao-phu-quoc-tuonglamphotos.jpg"
+           alt="바이사오 해변" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;">
+      <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(to bottom,rgba(0,60,64,0.72)0%,rgba(0,100,90,0.55)50%,rgba(0,50,40,0.82)100%);"></div>
+      <div style="position:relative;z-index:1;color:white;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;padding:12mm 8mm;">
+        <div style="font-size:28pt;margin-bottom:4px;">🌴</div>
+        <div style="font-size:17pt;font-weight:900;line-height:1.2;margin-bottom:6px;">푸꾸옥<br>가족여행 2026</div>
+        <div style="width:40mm;height:1px;background:rgba(255,255,255,0.5);margin:5px auto;"></div>
+        <div style="font-size:9pt;font-weight:700;margin-bottom:2px;">2026년 4월 1일(수) ~ 5일(일)</div>
+        <div style="font-size:8pt;color:rgba(255,255,255,0.9);">4박 5일 · 총 12명</div>
+        <div style="font-size:7pt;color:rgba(255,255,255,0.75);margin-top:2px;">성인 7명 + 소아 4명 + 유아 1명</div>
+        <div style="width:40mm;height:1px;background:rgba(255,255,255,0.5);margin:7px auto;"></div>
+        <div style="font-size:9pt;font-weight:700;color:#B2DFDB;">VJ977 ✈ VJ976</div>
+        <div style="font-size:7pt;color:rgba(255,255,255,0.8);margin-top:2px;">베스트웨스턴 프리미어 소나시</div>
+        <div style="position:absolute;bottom:5mm;left:0;right:0;text-align:center;font-size:6pt;color:rgba(255,255,255,0.45);">Phú Quốc · Vietnam</div>
+      </div>
+    </div>
+    <span class="pg-num" style="color:rgba(255,255,255,0.35);z-index:2;">1</span>
+  </div>
+
+  <!-- Page 2: 빠른 참조 -->
+  <div class="a5-page">
+    <div class="sec-title" style="background:#006064;color:white;margin:-7mm -8mm 6px;padding:4px 8mm;">📋 빠른 참조 Quick Reference</div>
+
+    <div style="background:#E0F7FA;border-radius:4px;padding:5px 7px;margin-bottom:4px;">
+      <div style="font-weight:900;font-size:8pt;margin-bottom:3px;">✈️ 항공편</div>
+      <table style="font-size:7pt;">
+        <tr><th style="background:#B2EBF2;width:45px;">편명</th><th style="background:#B2EBF2;">구간</th><th style="background:#B2EBF2;">출발</th><th style="background:#B2EBF2;">도착</th></tr>
+        <tr><td style="font-weight:700;color:#006064;">VJ977</td><td>ICN→PQC</td><td>4/1 05:00</td><td>09:40</td></tr>
+        <tr style="background:#F0F9FA;"><td style="font-weight:700;color:#006064;">VJ976</td><td>PQC→ICN</td><td>4/4 20:45</td><td>04:00+1</td></tr>
+      </table>
+      <div style="font-size:6.5pt;color:#555;margin-top:2px;">⚠️ 03:00 인천공항 T1 집결 · 기내 수하물 7kg</div>
+    </div>
+
+    <div style="background:#E8F5E9;border-radius:4px;padding:5px 7px;margin-bottom:4px;">
+      <div style="font-weight:900;font-size:8pt;margin-bottom:2px;">🏨 숙소</div>
+      <div style="font-size:8pt;font-weight:700;">베스트웨스턴 프리미어 소나시</div>
+      <div style="font-size:6.5pt;color:#555;">Best Western Premier Sonasea Phu Quoc</div>
+      <div style="font-size:7pt;margin-top:2px;">📞 +84 297 399 7777</div>
+      <div style="font-size:6.5pt;color:#555;">롱비치(Long Beach) 인근 · 공항 차 5~10분 · 300m 라군 풀</div>
+    </div>
+
+    <div class="row" style="margin-bottom:4px;">
+      <div class="col2" style="background:#FFF3E0;border-radius:4px;padding:4px 6px;">
+        <div style="font-weight:900;font-size:7.5pt;margin-bottom:2px;">🕐 시차</div>
+        <div style="font-size:8pt;font-weight:700;">한국 -2시간</div>
+        <div style="font-size:6.5pt;color:#555;">베트남 UTC+7<br>한국 10:00 → 현지 08:00</div>
+      </div>
+      <div class="col2" style="background:#FCE4EC;border-radius:4px;padding:4px 6px;">
+        <div style="font-weight:900;font-size:7.5pt;margin-bottom:2px;">💰 환율</div>
+        <div style="font-size:8pt;font-weight:700;">1,000₫ ≈ 54원</div>
+        <div style="font-size:6.5pt;color:#555;">뒤 0 두 개 떼고 ÷2<br>100만₫ ≈ 54,000원</div>
+      </div>
+    </div>
+
+    <div style="background:#F3E5F5;border-radius:4px;padding:4px 7px;margin-bottom:4px;">
+      <div style="font-weight:900;font-size:7.5pt;margin-bottom:2px;">🛫 인천공항 라운지 (T1)</div>
+      <div style="font-size:7pt;line-height:1.7;">
+        <div>PP카드: 동편 마티나 or 아시아나 라운지</div>
+        <div>VJ977 → 제1터미널 E게이트 구역 확인</div>
+      </div>
+    </div>
+
+    <div style="background:#FFEBEE;border-radius:4px;padding:4px 7px;">
+      <div style="font-weight:900;font-size:7.5pt;margin-bottom:2px;color:#C62828;">🆘 긴급 번호 (자세한 내용 → 7페이지)</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px 8px;font-size:7pt;">
+        <div>경찰 <strong>113</strong></div>
+        <div>소방 <strong>114</strong> / 구급 <strong>115</strong></div>
+        <div>관광경찰 <strong>1800-599-920</strong></div>
+        <div>호텔 <strong>+84 297 399 7777</strong></div>
+      </div>
+    </div>
+
+    <span class="pg-num">2</span>
+  </div>
+</div>
+
+<!-- ===== SHEET 2: Day 1 + Day 2 ===== -->
+<div class="a4-sheet">
+
+  <!-- Page 3: Day 1 -->
+  <div class="a5-page left">
+    <div class="sec-title day1-bg" style="margin:-7mm -8mm 5px;padding:4px 8mm;font-size:9pt;">📅 Day 1 — 4월 1일(수) 도착 & 체크인</div>
+
+    <div class="tl-item">
+      <div class="tl-time">03:00</div>
+      <div><div class="tl-title">인천공항 T1 집결</div><div class="tl-desc">국제선 3시간 전 · 라운지 이용 · 면세점 쇼핑</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">05:00</div>
+      <div><div class="tl-title">✈️ VJ977 출발</div><div class="tl-desc">인천 → 푸꾸옥 · 약 4시간 40분 · 기내식 제공</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">09:40</div>
+      <div><div class="tl-title">🛬 푸꾸옥 공항 도착</div><div class="tl-desc">입국심사 · 수하물 · 환전 · Grab 호출 (GrabCar XL 2대)</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">10:20</div>
+      <div><div class="tl-title">💆 서울이발관 마사지</div><div class="tl-desc">한국인 운영 · 예약 필수 · 픽업 서비스 이용</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">12:00</div>
+      <div><div class="tl-title">🍜 CUỐN CORNER 점심</div><div class="tl-desc">현지 쌀국수·롤 전문점 · 가성비 우수</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">13:00</div>
+      <div><div class="tl-title">☕ 66 Paris Coffee</div><div class="tl-desc">현지 감성 카페 · 코코넛 커피 추천</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">13:30</div>
+      <div>
+        <div class="tl-title">🛒 킹콩마트 쇼핑</div>
+        <div class="tl-desc">08:00~22:30 · 후추·심주·건망고·코코넛커피 구매<br>
+        <span style="color:#00695C;font-weight:700;">귀국 선물 미리 구매! 캐리어 반만 채워오기</span></div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">14:30</div>
+      <div><div class="tl-title">🏨 호텔 체크인</div><div class="tl-desc">베스트웨스턴 소나시 · 객실 배정 · 짐 풀기</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">15:30</div>
+      <div><div class="tl-title">🏊 풀빌라 & 라군 수영</div><div class="tl-desc">300m 라군 풀 · 슬라이드 · 어린이 풀 · 선베드</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">18:30</div>
+      <div><div class="tl-title">🌙 야시장 구경</div><div class="tl-desc">Dinh Cau Night Market · Grab 15분 · 간식/기념품</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">19:30</div>
+      <div><div class="tl-title">🍤 냐항센 저녁식사</div><div class="tl-desc">씨푸드 레스토랑 · 현지 분위기 · 예약 추천</div></div>
+    </div>
+
+    <div class="tip-box" style="margin-top:3px;">
+      💡 <strong>공항→호텔 그랩</strong>: 출구 나와서 GrabCar XL 2대 동시 호출로 12명 이동!
+    </div>
+
+    <span class="pg-num">3</span>
+  </div>
+
+  <!-- Page 4: Day 2 (빈펄사파리 + 그랜드월드) -->
+  <div class="a5-page">
+    <div class="sec-title day2-bg" style="margin:-7mm -8mm 5px;padding:4px 8mm;font-size:9pt;">🦒 Day 2 — 4월 2일(목) 빈펄사파리 & 그랜드월드</div>
+
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Vinpearl_Safari_Ph%C3%BA_Qu%E1%BB%91c.jpg/400px-Vinpearl_Safari_Ph%C3%BA_Qu%E1%BB%91c.jpg"
+         alt="빈펄사파리" class="spot-img-sm">
+
+    <div class="review-card">
+      <div class="review-header">
+        <div class="review-name">🦒 빈펄 사파리 Vinpearl Safari</div>
+        <div class="stars">★★★★☆</div>
+      </div>
+      <div class="review-info">
+        <span>🎟️ 성인 820,000₫ (≈44,000원)</span>
+        <span>👶 100cm 미만 무료</span>
+        <span>📍 380ha · 동물 4,000마리 · 200여 종</span>
+      </div>
+      <div class="review-text">"사파리 버스+동물원+조류 공연 통합 입장 · 아이들 강추!"</div>
+      <div style="font-size:6.5pt;color:#2E7D32;font-weight:700;margin-top:2px;">⭐ 팁: 사파리 버스 <u>왼쪽 열</u> 앉기 (동물 더 잘 보임!)</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-time">07:30</div>
+      <div><div class="tl-title">🌅 호텔 조식</div><div class="tl-desc">뷔페 조식 · 아이들 먹이고 이른 출발 준비</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">09:00</div>
+      <div><div class="tl-title">🦒 빈펄 사파리 입장</div><div class="tl-desc">Grab 약 25분 · 사파리 버스 → 동물원 → 조류 공연</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">12:00</div>
+      <div><div class="tl-title">🏙️ 그랜드월드 점심</div><div class="tl-desc">Grab 약 25분 이동 · 입장 무료 · 85ha 복합몰</div></div>
+    </div>
+
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/2023-07-30_Grand_World_Ph%C3%BA_Qu%E1%BB%91c_212124.jpg/400px-2023-07-30_Grand_World_Ph%C3%BA_Qu%E1%BB%91c_212124.jpg"
+         alt="그랜드월드" style="width:100%;max-height:22mm;object-fit:cover;border-radius:3px;margin-bottom:3px;">
+
+    <div style="background:#E8F5E9;border-radius:3px;padding:3px 6px;font-size:7pt;margin-bottom:4px;">
+      <strong>🏙️ 그랜드월드</strong> ★★★★☆ — 무료입장 · 08:00~22:00<br>
+      베네치아 운하 · 야외 공연 · 유럽풍 건물 · 야경 사진 명소
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-time">15:00</div>
+      <div><div class="tl-title">🏊 리조트 수영장</div><div class="tl-desc">라군 풀 & 키즈풀 · 저녁까지 자유 수영</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">18:00</div>
+      <div>
+        <div class="tl-title">🌙 즈엉동 야시장 저녁</div>
+        <div class="tl-desc">Cho Duong Dong · 길거리 음식 · 기념품 쇼핑</div>
+      </div>
+    </div>
+
+    <span class="pg-num">4</span>
+  </div>
+</div>
+
+<!-- ===== SHEET 3: Day 3 ===== -->
+<div class="a4-sheet">
+
+  <!-- Page 5: Day 3 전반 (케이블카) -->
+  <div class="a5-page left">
+    <div class="sec-title day3-bg" style="margin:-7mm -8mm 5px;padding:4px 8mm;font-size:9pt;">🚡 Day 3 — 4월 3일(금) 케이블카 & 선셋타운</div>
+
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/H%C3%B2n_Th%C6%A1m_cable_car_above_the_An_Th%E1%BB%9Bi_township.jpg/400px-H%C3%B2n_Th%C6%A1m_cable_car_above_the_An_Th%E1%BB%9Bi_township.jpg"
+         alt="혼텀 케이블카" class="spot-img" style="max-height:38mm;">
+
+    <div class="review-card">
+      <div class="review-header">
+        <div class="review-name">🚡 선월드 혼텀 케이블카</div>
+        <div class="stars">★★★★★</div>
+      </div>
+      <div class="review-info">
+        <span>🎟️ 성인 750,000₫ (≈40,500원)</span>
+        <span>🌊 아쿠아토피아 워터파크 포함</span>
+      </div>
+      <div class="review-text">"세계 최장 7.9km 케이블카 · 에메랄드 바다 절경 감동"</div>
+      <div style="font-size:6.5pt;color:#BF360C;font-weight:700;margin-top:2px;">⭐ 오후 2시가 최고! 태양 각도 + 바다색 완벽</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-time">07:30</div>
+      <div><div class="tl-title">🌅 호텔 조식</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">10:00</div>
+      <div><div class="tl-title">💆 스파더엘 스파</div><div class="tl-desc">Spa The L · 예약 필수 · 픽업 서비스 이용 가능</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">12:00</div>
+      <div><div class="tl-title">🌇 선셋타운 점심</div><div class="tl-desc">Sunset Town · Grab 30분 · 해변 레스토랑 · 씨푸드</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">13:30</div>
+      <div>
+        <div class="tl-title">🚡 케이블카 + 워터파크</div>
+        <div class="tl-desc">혼텀 케이블카 탑승 → 아쿠아토피아 워터파크<br>
+        <span style="color:#BF360C;font-weight:700;">오후 2시 탑승으로 최고 조망 확보!</span></div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">18:00</div>
+      <div><div class="tl-title">🍽️ 저녁식사</div><div class="tl-desc">선셋타운 또는 인근 레스토랑 · 씨푸드/베트남 요리</div></div>
+    </div>
+
+    <span class="pg-num">5</span>
+  </div>
+
+  <!-- Page 6: Day 3 후반 + Day 4 -->
+  <div class="a5-page">
+    <div class="sec-title day3-bg" style="margin:-7mm -8mm 5px;padding:4px 8mm;font-size:9pt;">🎆 Day 3 저녁 — 심포니 오브더 씨</div>
+
+    <div style="background:linear-gradient(135deg,#1A237E,#283593);color:white;border-radius:5px;padding:5px 8px;margin-bottom:5px;">
+      <div style="font-weight:900;font-size:9pt;margin-bottom:3px;">🎆 심포니 오브 더 씨 (Symphony of the Sea)</div>
+      <div style="font-size:7pt;line-height:1.7;">
+        <div>⏰ 19:45 시작 · 약 20분 공연</div>
+        <div>🌊 수상 아크로바틱 + 레이저 + 불꽃놀이</div>
+        <div>🏆 세계적 선수 21명 · 1,000발 불꽃</div>
+        <div>🎇 불꽃놀이 20:40 — 그랜드월드 앞 수상무대</div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-time">19:45</div>
+      <div><div class="tl-title">🎭 심포니 오브더 씨 공연</div><div class="tl-desc">그랜드월드 수상무대 · 자리 일찍 잡기!</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">20:15</div>
+      <div><div class="tl-title">☕ 그랜드월드 야간 산책</div><div class="tl-desc">카페 · 야경 사진 · 운하 야경 감상</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">20:40</div>
+      <div><div class="tl-title">🎆 불꽃놀이 관람</div><div class="tl-desc">1,000발 화려한 불꽃 · 전망 좋은 자리 선점</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">21:30</div>
+      <div><div class="tl-title">🚗 Grab으로 호텔 귀환</div><div class="tl-desc">약 25분 · GrabCar XL 2대</div></div>
+    </div>
+
+    <div style="height:5px;border-top:1px dashed #ddd;margin:5px 0;"></div>
+
+    <div class="sec-title day4-bg" style="margin:0 -8mm 5px;padding:4px 8mm;font-size:9pt;">🎡 Day 4 — 4월 4일(토) 빈원더스 & 귀국</div>
+
+    <div style="background:linear-gradient(135deg,#4A148C,#7B1FA2);color:white;border-radius:5px;padding:5px 8px;margin-bottom:4px;">
+      <div style="font-weight:900;font-size:8.5pt;margin-bottom:2px;">🎡 빈원더스 VinWonders</div>
+      <div style="font-size:7pt;line-height:1.7;">
+        <div>🎟️ 성인 ~980,000₫ (≈53,000원) · ★4.6/5 (2,000+ 리뷰)</div>
+        <div>🎢 50ha 테마파크 · 놀이기구 · 워터파크</div>
+        <div>⏰ 09:00~21:00 · 야간 라이트업 포함</div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-time">07:30</div>
+      <div><div class="tl-title">🌅 조식 + 체크아웃</div><div class="tl-desc">짐 미리 프런트 맡기기 (체크아웃 10:00)</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">10:00</div>
+      <div><div class="tl-title">🛒 킹콩마트 최종 쇼핑</div><div class="tl-desc">남은 선물 구매 · 빈 접이식 가방에 채우기</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">12:30</div>
+      <div><div class="tl-title">🎡 빈원더스 입장</div><div class="tl-desc">Grab 약 25분 · 놀이기구 · 워터파크 · 야경</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">17:00</div>
+      <div><div class="tl-title">🏙️ 그랜드월드 마지막 저녁</div><div class="tl-desc">베트남 마지막 만찬 · 기념 사진</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">18:00</div>
+      <div><div class="tl-title">✈️ 공항 이동</div><div class="tl-desc">Grab 약 20분 · 20:45 출발 2시간 30분 전 도착</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">20:45</div>
+      <div><div class="tl-title">🛫 VJ976 출발</div><div class="tl-desc">푸꾸옥 → 인천 · 약 4시간 40분</div></div>
+    </div>
+
+    <span class="pg-num">6</span>
+  </div>
+</div>
+
+<!-- ===== SHEET 4: 귀국+긴급 + 베트남어 ===== -->
+<div class="a4-sheet">
+
+  <!-- Page 7: Day 5 + 긴급연락처 -->
+  <div class="a5-page left">
+    <div class="sec-title day5-bg" style="margin:-7mm -8mm 5px;padding:4px 8mm;font-size:9pt;">🏠 Day 5 — 4월 5일(일) 귀국</div>
+
+    <div class="tl-item">
+      <div class="tl-time">04:00</div>
+      <div><div class="tl-title">🛬 인천공항 T1 도착</div><div class="tl-desc">수하물 수취 · 입국심사 · 잔여 VND 환전</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">05:00~</div>
+      <div><div class="tl-title">🚗 각자 귀가</div><div class="tl-desc">공항버스 / KTX / 택시 · 피곤하니 안전운전!</div></div>
+    </div>
+
+    <div class="tip-box" style="margin:4px 0;">
+      🏡 잔여 VND는 공항 환전소에서 원화로 교환. 관세: 미화 600달러 초과 시 신고.
+    </div>
+
+    <div style="height:5px;border-top:1px dashed #ddd;margin:4px 0;"></div>
+
+    <div style="background:linear-gradient(135deg,#C62828,#E53935);color:white;border-radius:5px;padding:6px 8px;margin-bottom:5px;">
+      <div style="font-weight:900;font-size:11pt;margin-bottom:5px;text-align:center;">🆘 긴급 연락처</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;">
+        <div style="background:rgba(255,255,255,0.15);border-radius:3px;padding:4px 6px;">
+          <div style="font-size:6.5pt;color:rgba(255,255,255,0.8);">🚔 경찰</div>
+          <div style="font-size:16pt;font-weight:900;">113</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.15);border-radius:3px;padding:4px 6px;">
+          <div style="font-size:6.5pt;color:rgba(255,255,255,0.8);">🚒 소방</div>
+          <div style="font-size:16pt;font-weight:900;">114</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.15);border-radius:3px;padding:4px 6px;">
+          <div style="font-size:6.5pt;color:rgba(255,255,255,0.8);">🚑 구급</div>
+          <div style="font-size:16pt;font-weight:900;">115</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.15);border-radius:3px;padding:4px 6px;">
+          <div style="font-size:6.5pt;color:rgba(255,255,255,0.8);">👮 관광경찰</div>
+          <div style="font-size:9pt;font-weight:900;margin-top:3px;">1800-599-920</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="emer-grid" style="gap:4px;margin-bottom:5px;">
+      <div style="background:#FFEBEE;border-radius:4px;padding:5px 7px;">
+        <div style="font-size:6.5pt;color:#666;">🏥 현지 병원</div>
+        <div style="font-size:9pt;font-weight:900;color:#C62828;">+84 297 366 666</div>
+        <div style="font-size:5.5pt;color:#888;">Phu Quoc Int'l Hospital</div>
+      </div>
+      <div style="background:#E3F2FD;border-radius:4px;padding:5px 7px;">
+        <div style="font-size:6.5pt;color:#666;">🇰🇷 주호치민 대사관</div>
+        <div style="font-size:9pt;font-weight:900;color:#1565C0;">+84 28 3822 5757</div>
+        <div style="font-size:5.5pt;color:#888;">영사 긴급전화 24시간</div>
+      </div>
+    </div>
+
+    <div style="background:#E8F5E9;border-radius:4px;padding:5px 7px;margin-bottom:4px;">
+      <div style="font-size:6.5pt;color:#666;">🇰🇷 외교부 영사콜센터 (한국에서)</div>
+      <div style="font-size:11pt;font-weight:900;color:#1B5E20;">+82-2-3410-0404</div>
+      <div style="font-size:6pt;color:#888;">24시간 연중무휴</div>
+    </div>
+
+    <div style="background:#FFF3E0;border-radius:4px;padding:5px 7px;">
+      <div style="font-size:6.5pt;color:#666;">🏨 베스트웨스턴 소나시 (호텔)</div>
+      <div style="font-size:11pt;font-weight:900;color:#E65100;">+84 297 399 7777</div>
+    </div>
+
+    <span class="pg-num">7</span>
+  </div>
+
+  <!-- Page 8: 베트남어 필수 회화 -->
+  <div class="a5-page">
+    <div class="sec-title" style="background:#2E7D32;color:white;margin:-7mm -8mm 5px;padding:4px 8mm;">🗣️ 베트남어 필수 회화</div>
+
+    <div style="font-weight:900;font-size:8pt;margin-bottom:2px;color:#1B5E20;">👋 기초 인사 & 호칭</div>
+    <table style="margin-bottom:4px;">
+      <tr><th style="background:#E8F5E9;">한국어</th><th style="background:#E8F5E9;">베트남어</th><th style="background:#E8F5E9;">발음</th></tr>
+      <tr><td>안녕하세요</td><td>Xin chào</td><td><strong>[신 짜오]</strong></td></tr>
+      <tr><td>감사합니다</td><td>Cảm ơn</td><td><strong>[깜 언]</strong></td></tr>
+      <tr><td>미안합니다</td><td>Xin lỗi</td><td><strong>[신 로이]</strong></td></tr>
+      <tr><td>맛있어요!</td><td>Ngon lắm!</td><td><strong>[응온 람!]</strong></td></tr>
+      <tr><td>직원 부르기</td><td>Em ơi!</td><td><strong>[엠 어이!]</strong></td></tr>
+    </table>
+
+    <div style="font-weight:900;font-size:8pt;margin-bottom:2px;color:#E65100;">🍜 식당 표현</div>
+    <table style="margin-bottom:4px;">
+      <tr><th style="background:#FFF3E0;">상황</th><th style="background:#FFF3E0;">베트남어</th><th style="background:#FFF3E0;">발음</th></tr>
+      <tr><td>~주세요</td><td>Cho tôi **</td><td>[쪼 또이 **]</td></tr>
+      <tr><td>얼마예요?</td><td>Bao nhiêu tiền?</td><td>[바오 니에우 띠엔?]</td></tr>
+      <tr><td>계산해주세요</td><td>Tính tiền nhé</td><td>[띤 띠엔 네기]</td></tr>
+      <tr><td>맵지 않게</td><td>Không cay</td><td>[꽁 까이]</td></tr>
+      <tr><td>고수 빼주세요</td><td>Không rau mùi</td><td>[꽁 라우 무이]</td></tr>
+      <tr><td>생수 주세요</td><td>Nước lọc</td><td>[느억 록]</td></tr>
+      <tr><td>원샷!</td><td>Một hai ba Dzo!</td><td>[못 하이 바 조!]</td></tr>
+    </table>
+
+    <div style="font-weight:900;font-size:8pt;margin-bottom:2px;color:#1565C0;">🛒 쇼핑 & 흥정</div>
+    <table style="margin-bottom:4px;">
+      <tr><th style="background:#E3F2FD;">상황</th><th style="background:#E3F2FD;">베트남어</th><th style="background:#E3F2FD;">발음</th></tr>
+      <tr><td>이거 얼마예요?</td><td>Cái này bao nhiêu?</td><td>[까이 나이 바오 니에우?]</td></tr>
+      <tr><td>깎아주세요</td><td>Bớt giá đi</td><td>[벗 자 디]</td></tr>
+      <tr><td>비싸요</td><td>Đắt quá</td><td>[닷 꽈기]</td></tr>
+    </table>
+
+    <div style="font-weight:900;font-size:8pt;margin-bottom:2px;color:#6A1B9A;">🚗 교통 & 호텔</div>
+    <table style="margin-bottom:4px;">
+      <tr><th style="background:#F3E5F5;">상황</th><th style="background:#F3E5F5;">베트남어</th><th style="background:#F3E5F5;">발음</th></tr>
+      <tr><td>여기 세워주세요</td><td>Dừng lại ở đây</td><td>[중 라이 어 더이]</td></tr>
+      <tr><td>체크인 할게요</td><td>Tôi muốn nhận phòng</td><td>[또이 무온 년 풍]</td></tr>
+      <tr><td>버기 불러주세요</td><td>Gọi xe buggy giúp tôi</td><td>[고이 세 부기]</td></tr>
+    </table>
+
+    <div class="tip-box">
+      💡 <strong>호칭 꿀팁</strong>: 젊은 남자→ "Anh" [안], 젊은 여자→ "Chị" [찌], 어린 직원→ "Em ơi" [엠 어이]<br>
+      기사에게 "Xin chào!" 한마디면 친절도 ↑↑
+    </div>
+
+    <span class="pg-num">8</span>
+  </div>
+</div>
+
+<!-- ===== SHEET 5: 숫자/환율/그랩 + 팁 ===== -->
+<div class="a4-sheet">
+
+  <!-- Page 9: 숫자 & 환율 & 그랩 요금 -->
+  <div class="a5-page left">
+    <div class="sec-title" style="background:#E65100;color:white;margin:-7mm -8mm 5px;padding:4px 8mm;">🔢 숫자 · 환율 · 그랩 요금</div>
+
+    <div class="row">
+      <div class="col2">
+        <div style="font-weight:900;font-size:8pt;margin-bottom:2px;color:#E65100;">🔢 숫자 발음</div>
+        <table>
+          <tr><th style="background:#FFF3E0;">숫자</th><th style="background:#FFF3E0;">베트남어</th><th style="background:#FFF3E0;">발음</th></tr>
+          <tr><td>0</td><td>Không</td><td>[꽁]</td></tr>
+          <tr><td>1</td><td>Một</td><td>[못]</td></tr>
+          <tr><td>2</td><td>Hai</td><td>[하이]</td></tr>
+          <tr><td>3</td><td>Ba</td><td>[바]</td></tr>
+          <tr><td>4</td><td>Bốn</td><td>[본기]</td></tr>
+          <tr><td>5</td><td>Năm</td><td>[남]</td></tr>
+          <tr><td>6</td><td>Sáu</td><td>[싸우기]</td></tr>
+          <tr><td>7</td><td>Bảy</td><td>[바이오]</td></tr>
+          <tr><td>8</td><td>Tám</td><td>[땀기]</td></tr>
+          <tr><td>9</td><td>Chín</td><td>[찐기]</td></tr>
+          <tr><td>10</td><td>Mười</td><td>[므이]</td></tr>
+        </table>
+      </div>
+      <div class="col2">
+        <div style="font-weight:900;font-size:8pt;margin-bottom:2px;color:#1565C0;">💰 환율표</div>
+        <table>
+          <tr><th style="background:#E3F2FD;">VND</th><th style="background:#E3F2FD;">≈ 원화</th></tr>
+          <tr><td>10,000</td><td><strong>540원</strong></td></tr>
+          <tr><td>20,000</td><td><strong>1,080원</strong></td></tr>
+          <tr><td>50,000</td><td><strong>2,700원</strong></td></tr>
+          <tr><td>100,000</td><td><strong>5,400원</strong></td></tr>
+          <tr><td>200,000</td><td><strong>10,800원</strong></td></tr>
+          <tr><td>500,000</td><td><strong>27,000원</strong></td></tr>
+          <tr><td>1,000,000</td><td><strong>54,000원</strong></td></tr>
+        </table>
+        <div class="fx-tip" style="margin-top:4px;font-size:7pt;">
+          뒤 0 두개 떼고 ÷2 ≈ 원화<br>
+          <span style="font-weight:400;">예) 200,000→2,000÷2=1,000원</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="height:4px;"></div>
+
+    <div style="font-weight:900;font-size:8pt;margin-bottom:3px;color:#2E7D32;">🚗 그랩(Grab) 주요 노선 요금 (베스트웨스턴 기준)</div>
+    <table style="margin-bottom:4px;">
+      <tr>
+        <th style="background:#E8F5E9;">목적지</th>
+        <th style="background:#E8F5E9;">시간</th>
+        <th style="background:#E8F5E9;">편도</th>
+      </tr>
+      <tr><td>야시장 (Dinh Cau)</td><td>15분</td><td>~50,000₫ (2,700원)</td></tr>
+      <tr><td>그랜드월드</td><td>25분</td><td>~120,000₫ (6,500원)</td></tr>
+      <tr><td>케이블카 (Hon Thom)</td><td>35분</td><td>~180,000₫ (9,700원)</td></tr>
+      <tr><td>바이사오 해변</td><td>30분</td><td>~150,000₫ (8,100원)</td></tr>
+      <tr><td>공항</td><td>20분</td><td>~80,000₫ (4,300원)</td></tr>
+    </table>
+
+    <div class="tip-box">
+      💡 <strong>12명 이동 팁</strong>: GrabCar XL(7인) 2대 동시 호출<br>
+      피크타임 서지요금 +20~40% · 앱에서 카드 한국서 미리 등록!
+    </div>
+
+    <span class="pg-num">9</span>
+  </div>
+
+  <!-- Page 10: 여행 팁 + 킹콩마트 -->
+  <div class="a5-page">
+    <div class="sec-title" style="background:#F9A825;color:#333;margin:-7mm -8mm 5px;padding:4px 8mm;">💡 현지 경험자 꿀팁 TOP 11</div>
+
+    <ol style="font-size:7.5pt;padding-left:16px;margin:0 0 5px 0;line-height:1.8;">
+      <li><strong>케이블카 최적 시간</strong> — 혼텀 케이블카는 <span style="color:#E65100;font-weight:700;">오후 2시</span>경 바다색 최고</li>
+      <li><strong>야시장은 구경용</strong> — 음식 복불복, 메인 식사는 제대로 된 식당에서</li>
+      <li><strong>사파리 명당</strong> — 사파리 버스 <span style="color:#E65100;font-weight:700;">왼쪽 열</span> 앉기!</li>
+      <li><strong>앱 준비</strong> — 구글맵 오프라인 미리 다운 + Grab 카드 한국서 등록</li>
+      <li><strong>현지 구매</strong> — 슬리퍼·간단한 용품은 킹콩마트에서 저렴 구매</li>
+      <li><strong>환전은 시내에서</strong> — 공항 환전 최소화, 킹콩마트 옆 굿앤굿 환전소</li>
+      <li><strong>캐리어 전략</strong> — <span style="color:#E65100;font-weight:700;">출국 시 캐리어 반만!</span> 쇼핑 공간 미리 확보</li>
+      <li><strong>옷 최소화</strong> — 반팔·반바지가 전부. 사원용 긴바지 1벌만</li>
+      <li><strong>타이거밤</strong> — 핫(Hot)보다 <span style="color:#1565C0;font-weight:700;">쿨(Cool)</span> 추천. 더운 날씨에 시원</li>
+      <li><strong>마사지 픽업</strong> — 스파 픽업 서비스 적극 활용</li>
+      <li><strong>기내 수하물 7kg</strong> — 빈 접이식 가방 챙겨가서 쇼핑 물건 기내 반입</li>
+    </ol>
+
+    <div style="background:linear-gradient(135deg,#FF6F00,#F9A825);color:white;border-radius:5px;padding:5px 8px;margin-bottom:4px;">
+      <div style="font-weight:900;font-size:9pt;margin-bottom:3px;">🛒 킹콩마트 필수 구매 목록</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px 6px;font-size:7.5pt;">
+        <div>🌶️ 캄포 후추 (Kampot Pepper)</div>
+        <div>🍷 심주 (Sim Wine · 복분자)</div>
+        <div>🥭 건망고 (Dried Mango)</div>
+        <div>☕ 코코넛 커피</div>
+        <div>🦐 건새우 · 건어물</div>
+        <div>🧴 타이거밤 쿨</div>
+        <div>🍪 캐슈너트 과자</div>
+        <div>👟 슬리퍼 (저렴!)</div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      ⏰ <strong>영업시간</strong>: 08:00 ~ 22:30 · 연중무휴<br>
+      📍 즈엉동 시내 · Grab 15분 · 1일차 + 4일차 2번 방문 추천!
+    </div>
+
+    <span class="pg-num">10</span>
+  </div>
+</div>
+
+<!-- ===== SHEET 6: 체크리스트 + 뒷표지 ===== -->
+<div class="a4-sheet">
+
+  <!-- Page 11: 체크리스트 -->
+  <div class="a5-page left">
+    <div class="sec-title" style="background:#455A64;color:white;margin:-7mm -8mm 5px;padding:4px 8mm;">✅ 준비물 체크리스트</div>
+
+    <div class="cl-title">📄 여권 & 서류</div>
+    <div class="cl-grid" style="margin-bottom:4px;">
+      <div class="cl-item"><div class="cl-box"></div> 여권 (유효기간 6개월+)</div>
+      <div class="cl-item"><div class="cl-box"></div> 항공권 e-티켓</div>
+      <div class="cl-item"><div class="cl-box"></div> 호텔 예약 확인서</div>
+      <div class="cl-item"><div class="cl-box"></div> 여행자보험증</div>
+      <div class="cl-item"><div class="cl-box"></div> 신용카드 (VISA/MASTER)</div>
+      <div class="cl-item"><div class="cl-box"></div> 현금 (VND or USD)</div>
+    </div>
+
+    <div class="cl-title">👕 의류 & 신발</div>
+    <div class="cl-grid" style="margin-bottom:4px;">
+      <div class="cl-item"><div class="cl-box"></div> 반팔 티셔츠 5벌+</div>
+      <div class="cl-item"><div class="cl-box"></div> 반바지</div>
+      <div class="cl-item"><div class="cl-box"></div> 수영복 2벌+</div>
+      <div class="cl-item"><div class="cl-box"></div> 샌들/슬리퍼</div>
+      <div class="cl-item"><div class="cl-box"></div> 운동화</div>
+      <div class="cl-item"><div class="cl-box"></div> 모자 (선캡)</div>
+      <div class="cl-item"><div class="cl-box"></div> 선글라스</div>
+      <div class="cl-item"><div class="cl-box"></div> 얇은 카디건</div>
+    </div>
+
+    <div class="cl-title">🧴 위생 & 선케어</div>
+    <div class="cl-grid" style="margin-bottom:4px;">
+      <div class="cl-item"><div class="cl-box"></div> 자외선차단제 SPF50+</div>
+      <div class="cl-item"><div class="cl-box"></div> 모기기피제</div>
+      <div class="cl-item"><div class="cl-box"></div> 물티슈 (넉넉히)</div>
+      <div class="cl-item"><div class="cl-box"></div> 기초 화장품</div>
+    </div>
+
+    <div class="cl-title">💊 상비약</div>
+    <div class="cl-grid" style="margin-bottom:4px;">
+      <div class="cl-item"><div class="cl-box"></div> 지사제 (정로환)</div>
+      <div class="cl-item"><div class="cl-box"></div> 해열진통제</div>
+      <div class="cl-item"><div class="cl-box"></div> 소화제</div>
+      <div class="cl-item"><div class="cl-box"></div> 멀미약</div>
+      <div class="cl-item"><div class="cl-box"></div> 어린이 해열제</div>
+      <div class="cl-item"><div class="cl-box"></div> 밴드/상처연고</div>
+    </div>
+
+    <div class="cl-title">📱 전자기기</div>
+    <div class="cl-grid" style="margin-bottom:4px;">
+      <div class="cl-item"><div class="cl-box"></div> 스마트폰 + 충전기</div>
+      <div class="cl-item"><div class="cl-box"></div> eSIM/유심 준비</div>
+      <div class="cl-item"><div class="cl-box"></div> 보조배터리</div>
+      <div class="cl-item"><div class="cl-box"></div> 방수팩/케이스</div>
+      <div class="cl-item"><div class="cl-box"></div> Grab 앱 설치</div>
+      <div class="cl-item"><div class="cl-box"></div> 멀티탭</div>
+    </div>
+
+    <div class="cl-title">👶 어린이 & 수영</div>
+    <div class="cl-grid" style="margin-bottom:4px;">
+      <div class="cl-item"><div class="cl-box"></div> 어린이 자외선차단제</div>
+      <div class="cl-item"><div class="cl-box"></div> 구명조끼</div>
+      <div class="cl-item"><div class="cl-box"></div> 물안경/튜브</div>
+      <div class="cl-item"><div class="cl-box"></div> 아이 간식</div>
+      <div class="cl-item"><div class="cl-box"></div> 기저귀/물티슈</div>
+      <div class="cl-item"><div class="cl-box"></div> 어린이 모기패치</div>
+    </div>
+
+    <div class="cl-title">🛒 다이소 추천</div>
+    <div class="cl-grid" style="margin-bottom:4px;">
+      <div class="cl-item"><div class="cl-box"></div> 13포켓 미니섹션파일</div>
+      <div class="cl-item"><div class="cl-box"></div> 접이식 보조가방</div>
+      <div class="cl-item"><div class="cl-box"></div> 휴대용 종이비누</div>
+      <div class="cl-item"><div class="cl-box"></div> 아쿠아밴드</div>
+    </div>
+
+    <div class="tip-box" style="margin-top:2px;font-size:6.5pt;">
+      👕 반팔·반바지가 전부! 슬리퍼는 킹콩마트서 구매. 캐리어 반만 채워가기!
+    </div>
+
+    <span class="pg-num">11</span>
+  </div>
+
+  <!-- Page 12: 뒷표지 -->
+  <div class="a5-page" style="padding:0;">
+    <div style="position:relative;width:100%;height:100%;background:linear-gradient(160deg,#006064 0%,#00897B 45%,#004D40 100%);">
+      <div style="position:relative;z-index:1;color:white;display:flex;flex-direction:column;align-items:center;padding:9mm 8mm 7mm;">
+
+        <div style="font-size:20pt;margin-bottom:3px;">🌴</div>
+        <div style="font-size:14pt;font-weight:900;text-align:center;line-height:1.3;margin-bottom:3px;">즐거운 여행 되세요!</div>
+        <div style="font-size:7.5pt;color:rgba(255,255,255,0.8);text-align:center;margin-bottom:7mm;">Chúc có một chuyến đi vui vẻ!</div>
+
+        <!-- 메모 공간 -->
+        <div style="width:100%;background:rgba(255,255,255,0.12);border-radius:6px;padding:5mm;margin-bottom:6mm;">
+          <div style="font-size:7pt;color:rgba(255,255,255,0.7);margin-bottom:4px;">📝 메모</div>
+          <div style="border-bottom:1px solid rgba(255,255,255,0.3);height:7mm;margin-bottom:2px;"></div>
+          <div style="border-bottom:1px solid rgba(255,255,255,0.3);height:7mm;margin-bottom:2px;"></div>
+          <div style="border-bottom:1px solid rgba(255,255,255,0.3);height:7mm;margin-bottom:2px;"></div>
+          <div style="border-bottom:1px solid rgba(255,255,255,0.3);height:7mm;"></div>
+        </div>
+
+        <!-- QR 코드 -->
+        <div style="display:flex;gap:8px;align-items:center;background:rgba(255,255,255,0.15);border-radius:6px;padding:4mm 5mm;margin-bottom:5mm;width:100%;">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=70x70&color=ffffff&bgcolor=00000000&data=https://kimyounguk1988.github.io/phuquoc-guide/"
+               alt="QR 온라인 가이드"
+               style="width:70px;height:70px;border-radius:4px;background:white;padding:3px;flex-shrink:0;">
+          <div>
+            <div style="font-size:7.5pt;font-weight:700;margin-bottom:2px;">📱 온라인 전체 가이드</div>
+            <div style="font-size:6.5pt;color:rgba(255,255,255,0.8);line-height:1.6;">QR 스캔 → 지도·예약링크<br>포함 완전판 가이드</div>
+          </div>
+        </div>
+
+        <!-- 일정 요약 -->
+        <div style="width:100%;font-size:6.5pt;color:rgba(255,255,255,0.8);text-align:center;line-height:2.0;">
+          <div>4/1(수) 도착 · 마사지 · 킹콩마트 · 야시장</div>
+          <div>4/2(목) 빈펄사파리 · 그랜드월드</div>
+          <div>4/3(금) 케이블카 · 심포니오브더씨</div>
+          <div>4/4(토) 빈원더스 · VJ976 귀국 20:45</div>
+          <div>4/5(일) 인천 04:00 도착</div>
+        </div>
+
+      </div>
+    </div>
+    <span class="pg-num" style="color:rgba(255,255,255,0.35);z-index:2;">12</span>
+  </div>
+</div>
+
+</body>
+</html>
