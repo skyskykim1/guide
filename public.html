@@ -697,31 +697,6 @@ section:nth-of-type(odd) { background: transparent; }
   .ledger-grand .g-right { text-align: center; }
 }
 
-/* ===== 메모장 ===== */
-.memo-box {
-  background: white; border-radius: var(--radius); padding: 16px;
-  border: 1px solid var(--border); box-shadow: var(--shadow-card);
-}
-.memo-textarea {
-  width: 100%; min-height: 200px; padding: 12px 14px;
-  border: 1px solid var(--border); border-radius: 10px;
-  font-size: 0.9rem; font-family: inherit; color: var(--text);
-  background: var(--bg); resize: vertical; line-height: 1.7;
-  transition: border 0.15s; box-sizing: border-box;
-}
-.memo-textarea:focus { outline: none; border-color: var(--teal-light); background: white; }
-.memo-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; gap: 10px; }
-.memo-saved-time { font-size: 0.75rem; color: var(--text-muted); }
-.memo-save {
-  padding: 11px 28px; background: var(--teal); color: white;
-  border: none; border-radius: 10px; font-size: 0.9rem; font-weight: 700;
-  cursor: pointer; font-family: inherit; transition: background 0.2s;
-  letter-spacing: 0.01em; flex-shrink: 0;
-}
-.memo-save:hover { background: var(--teal-dark); }
-.memo-save:active { transform: scale(0.98); }
-#memo, #memo * { pointer-events: auto; }
-
 /* ===== 구글시트 동기화 ===== */
 .sync-btn {
   background: none; border: 1px solid var(--border); border-radius: 8px;
@@ -792,7 +767,6 @@ section:nth-of-type(odd) { background: transparent; }
       <a href="#tips">팁</a>
       <a href="#emergency">긴급연락</a>
       <a href="#ledger" style="background:rgba(255,167,38,0.2);color:var(--gold-light);border:1px solid rgba(255,167,38,0.3);">💰가계부</a>
-      <a href="#memo" style="background:rgba(100,181,246,0.2);color:#90CAF9;border:1px solid rgba(100,181,246,0.3);">📝메모장</a>
       <a href="phuquoc-booklet.html" target="_blank" style="background:rgba(0,137,123,0.25);color:#B2DFDB;border:1px solid rgba(0,137,123,0.4);">📖소책자</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="메뉴">
@@ -821,7 +795,6 @@ section:nth-of-type(odd) { background: transparent; }
     <a href="#tips"        onclick="closeMenu()"><span class="menu-icon">💡</span>팁</a>
     <a href="#emergency"   onclick="closeMenu()"><span class="menu-icon">🚨</span>긴급연락</a>
     <a href="#ledger"      onclick="closeMenu()" style="background:rgba(255,167,38,0.15);border-color:rgba(255,167,38,0.3);color:var(--gold-light);"><span class="menu-icon">💰</span>가계부</a>
-    <a href="#memo"        onclick="closeMenu()" style="background:rgba(100,181,246,0.15);border-color:rgba(100,181,246,0.3);color:#90CAF9;"><span class="menu-icon">📝</span>메모장</a>
   </div>
 </div>
 
@@ -921,21 +894,8 @@ section:nth-of-type(odd) { background: transparent; }
 </section>
 </div>
 
-<!-- ===== 메모장 ===== -->
+
 <div class="section-wrap" style="position:relative; z-index:2;">
-<section id="memo">
-  <div class="section-title-bar">
-    <h2 class="section-title">📝 여행 메모장</h2>
-    <span class="section-title-sub">자유 메모 · 자동저장</span>
-  </div>
-  <div class="memo-box">
-    <textarea class="memo-textarea" id="memoText" placeholder="여행 중 메모할 내용을 자유롭게 적어주세요.&#10;예) 식당 이름, 쇼핑 목록, 특별한 순간들..."></textarea>
-    <div class="memo-footer">
-      <span class="memo-saved-time" id="memoSavedTime"></span>
-      <button class="memo-save" onclick="saveMemo()">💾 저장</button>
-    </div>
-  </div>
-</section>
 </div>
 
 <!-- ===== 지도 ===== -->
@@ -3639,45 +3599,6 @@ section:nth-of-type(odd) { background: transparent; }
 </footer>
 
 <script>
-// 메모장
-(function() {
-  const MEMO_KEY = 'phuquoc_memo';
-  const MEMO_TIME_KEY = 'phuquoc_memo_time';
-
-  function loadMemo() {
-    const text = localStorage.getItem(MEMO_KEY) || '';
-    const time = localStorage.getItem(MEMO_TIME_KEY);
-    const ta = document.getElementById('memoText');
-    if (ta) ta.value = text;
-    updateMemoTime(time);
-  }
-
-  function updateMemoTime(isoStr) {
-    const el = document.getElementById('memoSavedTime');
-    if (!el) return;
-    if (!isoStr) { el.textContent = ''; return; }
-    const d = new Date(isoStr);
-    el.textContent = '마지막 저장: ' + d.toLocaleString('ko-KR');
-  }
-
-  window.saveMemo = function() {
-    const ta = document.getElementById('memoText');
-    if (!ta) return;
-    const now = new Date().toISOString();
-    localStorage.setItem(MEMO_KEY, ta.value);
-    localStorage.setItem(MEMO_TIME_KEY, now);
-    updateMemoTime(now);
-    const btn = document.querySelector('.memo-save');
-    if (btn) {
-      const orig = btn.textContent;
-      btn.textContent = '✓ 저장됨';
-      btn.style.background = '#2e7d32';
-      setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 1500);
-    }
-  };
-
-  document.addEventListener('DOMContentLoaded', loadMemo);
-})();
 
 // 햄버거 메뉴
 const hamburger = document.getElementById('hamburger');
