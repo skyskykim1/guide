@@ -859,6 +859,7 @@ section:nth-of-type(odd) { background: transparent; }
       💡 비행 약 <strong style="color:var(--gold-light)">5시간 50분</strong> &nbsp;·&nbsp; 시차: 한국 -2시간 (UTC+7) &nbsp;·&nbsp; 환율: 1만 VND ≈ 560원
     </div>
     <div id="dday-counter">⏳ 계산 중...</div>
+    <button id="syncRefreshBtn" onclick="syncRefresh()" style="margin-top:12px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.4);color:white;border-radius:50px;padding:7px 22px;font-size:0.82rem;cursor:pointer;font-family:inherit;transition:all 0.2s;">🔄 새로고침</button>
   </div>
   <!-- Wave divider -->
   <div class="hero-wave">
@@ -3751,6 +3752,18 @@ async function syncSave() {
     ? '<span class="sync-ok">✅ 구글시트에 저장했습니다</span>'
     : '<span class="sync-err">❌ 저장 실패 (네트워크 확인)</span>';
   updateSyncBtn(ok);
+}
+
+// 새로고침 버튼 — 구글시트에서 불러와 화면 갱신
+async function syncRefresh() {
+  const btn = document.getElementById('syncRefreshBtn');
+  if (btn) { btn.textContent = '⏳ 불러오는 중...'; btn.disabled = true; }
+  const remote = await SheetsSync.load();
+  applyRemoteData(remote);
+  if (btn) {
+    btn.textContent = remote ? '✅ 완료!' : '❌ 실패';
+    setTimeout(() => { btn.textContent = '🔄 새로고침'; btn.disabled = false; }, 1800);
+  }
 }
 
 // 페이지 로드 시 구글시트에서 불러오기
