@@ -786,14 +786,9 @@ section:nth-of-type(odd) { background: transparent; }
 <script>
 (function(){
   var PW = '0269';
-  var KEY = 'pq_pub_auth';
-  if(sessionStorage.getItem(KEY)==='1'){
-    document.getElementById('pwLock').style.display='none';
-  }
   window.pwCheck = function(){
     var v = document.getElementById('pwInput').value;
     if(v===PW){
-      sessionStorage.setItem(KEY,'1');
       document.getElementById('pwLock').style.display='none';
     } else {
       document.getElementById('pwErr').textContent='비밀번호가 틀렸습니다';
