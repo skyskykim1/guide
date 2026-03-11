@@ -769,6 +769,41 @@ section:nth-of-type(odd) { background: transparent; }
 </style>
 </head>
 <body>
+<!-- ===== 비밀번호 잠금 ===== -->
+<div id="pwLock" style="position:fixed;inset:0;background:#0a1628;z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;">
+  <div style="font-size:2rem;">🌴</div>
+  <div style="color:white;font-size:1.1rem;font-weight:700;">푸꾸옥 가이드 2026</div>
+  <div style="color:rgba(255,255,255,0.5);font-size:0.85rem;margin-bottom:4px;">비밀번호를 입력하세요</div>
+  <input id="pwInput" type="password" inputmode="numeric" maxlength="10"
+    style="width:180px;padding:12px;text-align:center;font-size:1.3rem;letter-spacing:6px;border:2px solid rgba(255,255,255,0.3);border-radius:12px;background:rgba(255,255,255,0.1);color:white;outline:none;"
+    onkeydown="if(event.key==='Enter')pwCheck()" autofocus>
+  <button onclick="pwCheck()"
+    style="width:180px;padding:12px;background:#0097A7;color:white;border:none;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;">
+    확인
+  </button>
+  <div id="pwErr" style="color:#ff6b6b;font-size:0.82rem;min-height:18px;"></div>
+</div>
+<script>
+(function(){
+  var PW = '0269';
+  var KEY = 'pq_pub_auth';
+  if(sessionStorage.getItem(KEY)==='1'){
+    document.getElementById('pwLock').style.display='none';
+  }
+  window.pwCheck = function(){
+    var v = document.getElementById('pwInput').value;
+    if(v===PW){
+      sessionStorage.setItem(KEY,'1');
+      document.getElementById('pwLock').style.display='none';
+    } else {
+      document.getElementById('pwErr').textContent='비밀번호가 틀렸습니다';
+      document.getElementById('pwInput').value='';
+      document.getElementById('pwInput').focus();
+    }
+  };
+})();
+</script>
+
 
 <!-- ===== TOP NAV ===== -->
 <nav id="top-nav">
