@@ -686,6 +686,40 @@ section:nth-of-type(odd) { background: transparent; }
 .l-del:hover { background: #FEE2E2; color: #DC2626; }
 .l-empty { text-align: center; padding: 36px 20px; color: var(--text-muted); font-size: 0.85rem; }
 
+/* 예산 카드 */
+.budget-card {
+  background: white; border-radius: var(--radius); padding: 16px 20px;
+  border: 1px solid var(--border); box-shadow: var(--shadow-card); margin-bottom: 16px;
+}
+.budget-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; flex-wrap: wrap; gap: 8px; }
+.budget-title { font-size: 0.88rem; font-weight: 700; color: var(--teal-dark); }
+.budget-set-row { display: flex; gap: 6px; align-items: center; }
+.budget-set-row input { width: 120px; padding: 7px 10px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 0.85rem; font-family: inherit; }
+.budget-set-row select { padding: 7px 8px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 0.82rem; font-family: inherit; background: white; }
+.budget-set-btn { padding: 7px 14px; background: var(--teal); color: white; border: none; border-radius: 8px; font-size: 0.82rem; font-weight: 700; cursor: pointer; font-family: inherit; }
+.budget-set-btn:active { opacity: 0.8; }
+.budget-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 10px; }
+.budget-stat { text-align: center; padding: 10px 6px; border-radius: 10px; }
+.budget-stat .bs-label { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 3px; }
+.budget-stat .bs-vnd { font-size: 0.9rem; font-weight: 800; }
+.budget-stat .bs-krw { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; }
+.budget-stat.bs-budget { background: #F0F4F8; }
+.budget-stat.bs-spent { background: #FFF4E6; }
+.budget-stat.bs-remain.ok { background: #EDFAF1; }
+.budget-stat.bs-remain.ok .bs-vnd { color: #1B5E20; }
+.budget-stat.bs-remain.over { background: #FFF0F0; }
+.budget-stat.bs-remain.over .bs-vnd { color: #C62828; }
+.budget-bar-wrap { height: 8px; background: var(--border); border-radius: 99px; overflow: hidden; }
+.budget-bar-fill { height: 100%; border-radius: 99px; transition: width 0.4s; }
+.budget-bar-fill.safe { background: var(--teal); }
+.budget-bar-fill.warn { background: var(--gold); }
+.budget-bar-fill.over { background: var(--coral); }
+.budget-no-set { text-align: center; color: var(--text-muted); font-size: 0.82rem; padding: 4px 0 2px; }
+@media (max-width: 480px) {
+  .budget-header { flex-direction: column; align-items: flex-start; }
+  .budget-set-row input { width: 100px; }
+}
+
 /* 가계부 상호작용 보장 */
 #ledger, #ledger * { pointer-events: auto; }
 .ledger-tab, .lf-save, .l-del { cursor: pointer; -webkit-tap-highlight-color: rgba(0,151,167,0.2); }
@@ -3918,11 +3952,13 @@ if (scrollTopBtn) {
   ];
 
   let data = (() => {
-    try { return JSON.parse(localStorage.getItem(LEDGER_KEY)) || { groups:[[],[],[],[]] }; }
-    catch(e) { return { groups:[[],[],[],[]] }; }
+    try { return JSON.parse(localStorage.getItem(LEDGER_KEY)) || { groups:[[],[],[],[]], budgets:[0,0,0,0] }; }
+    catch(e) { return { groups:[[],[],[],[]], budgets:[0,0,0,0] }; }
   })();
   if (!Array.isArray(data.groups) || data.groups.length < 4)
-    data = { groups:[[],[],[],[]] };
+    data = { groups:[[],[],[],[]], budgets:[0,0,0,0] };
+  if (!Array.isArray(data.budgets) || data.budgets.length < 4)
+    data.budgets = [0,0,0,0];
 
   function save() {
     localStorage.setItem(LEDGER_KEY, JSON.stringify(data));
@@ -3932,6 +3968,8 @@ if (scrollTopBtn) {
   window.ldReload = function(newData) {
     if (newData && Array.isArray(newData.groups) && newData.groups.length >= 4) {
       data = newData;
+      if (!Array.isArray(data.budgets) || data.budgets.length < 4)
+        data.budgets = [0,0,0,0];
       const activeTab = document.querySelector('.ledger-tab.active');
       const gi = activeTab ? parseInt(activeTab.dataset.group) : 0;
       renderPanel(gi);
@@ -3954,6 +3992,46 @@ if (scrollTopBtn) {
     const panel = document.getElementById('lp-'+gi);
     const entries = data.groups[gi];
     const total = grpTotal(gi);
+
+    // 예산 카드
+    const budget = data.budgets[gi] || 0;
+    const remain = budget - total;
+    const pct = budget > 0 ? Math.min(Math.round(total / budget * 100), 100) : 0;
+    const barClass = pct >= 100 ? 'over' : pct >= 80 ? 'warn' : 'safe';
+    const remClass = remain >= 0 ? 'ok' : 'over';
+    let budgetHtml = `<div class="budget-card">
+      <div class="budget-header">
+        <span class="budget-title">📊 예산 관리</span>
+        <div class="budget-set-row">
+          <select id="bf-cur-${gi}"><option value="VND">동(VND)</option><option value="KRW">원(KRW)</option></select>
+          <input type="number" id="bf-amt-${gi}" placeholder="예산 입력" min="0">
+          <button class="budget-set-btn" onclick="ldSetBudget(${gi})">설정</button>
+        </div>
+      </div>`;
+    if (budget > 0) {
+      budgetHtml += `
+      <div class="budget-stats">
+        <div class="budget-stat bs-budget">
+          <div class="bs-label">예산</div>
+          <div class="bs-vnd">${fmtV(budget)}</div>
+          <div class="bs-krw">${fmtK(budget)}</div>
+        </div>
+        <div class="budget-stat bs-spent">
+          <div class="bs-label">지출</div>
+          <div class="bs-vnd">${fmtV(total)}</div>
+          <div class="bs-krw">${fmtK(total)}</div>
+        </div>
+        <div class="budget-stat bs-remain ${remClass}">
+          <div class="bs-label">${remain >= 0 ? '잔액' : '초과'}</div>
+          <div class="bs-vnd">${fmtV(Math.abs(remain))}</div>
+          <div class="bs-krw">${fmtK(Math.abs(remain))}</div>
+        </div>
+      </div>
+      <div class="budget-bar-wrap"><div class="budget-bar-fill ${barClass}" style="width:${pct}%"></div></div>`;
+    } else {
+      budgetHtml += `<div class="budget-no-set">예산을 설정하면 잔액이 자동 계산됩니다.</div>`;
+    }
+    budgetHtml += '</div>';
 
     // 요약 카드
     const catMap = {};
@@ -4013,7 +4091,7 @@ if (scrollTopBtn) {
     }
     listHtml += '</div>';
 
-    panel.innerHTML = sumHtml + formHtml + listHtml;
+    panel.innerHTML = budgetHtml + sumHtml + formHtml + listHtml;
     updateGrand();
   }
 
@@ -4028,6 +4106,15 @@ if (scrollTopBtn) {
     if (amt <= 0) { document.getElementById('lf-amt-'+gi).focus(); return; }
     const vnd = cur === 'KRW' ? Math.round(amt * 1000 / 54) : Math.round(amt);
     data.groups[gi].push({ id: Date.now().toString(36)+Math.random().toString(36).slice(2,5), date, cat, desc, vnd, currency: cur, amount: amt, note });
+    save();
+    renderPanel(gi);
+  };
+
+  window.ldSetBudget = function(gi) {
+    const cur = document.getElementById('bf-cur-'+gi).value;
+    const amt = parseFloat(document.getElementById('bf-amt-'+gi).value) || 0;
+    if (amt <= 0) { document.getElementById('bf-amt-'+gi).focus(); return; }
+    data.budgets[gi] = cur === 'KRW' ? Math.round(amt * 1000 / 54) : Math.round(amt);
     save();
     renderPanel(gi);
   };
