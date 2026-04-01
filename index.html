@@ -3959,6 +3959,8 @@ if (scrollTopBtn) {
     data = { groups:[[],[],[],[]], budgets:[0,0,0,0] };
   if (!Array.isArray(data.budgets) || data.budgets.length < 4)
     data.budgets = [0,0,0,0];
+  if (!Array.isArray(data.budgetKrw) || data.budgetKrw.length < 4)
+    data.budgetKrw = [0,0,0,0];
 
   function save() {
     localStorage.setItem(LEDGER_KEY, JSON.stringify(data));
@@ -3970,6 +3972,8 @@ if (scrollTopBtn) {
       data = newData;
       if (!Array.isArray(data.budgets) || data.budgets.length < 4)
         data.budgets = [0,0,0,0];
+      if (!Array.isArray(data.budgetKrw) || data.budgetKrw.length < 4)
+        data.budgetKrw = [0,0,0,0];
       const activeTab = document.querySelector('.ledger-tab.active');
       const gi = activeTab ? parseInt(activeTab.dataset.group) : 0;
       renderPanel(gi);
@@ -3997,8 +4001,10 @@ if (scrollTopBtn) {
     const entries = data.groups[gi];
     const total = grpTotal(gi);
 
-    // 예산 카드
-    const budget = data.budgets[gi] || 0;
+    // 예산 카드 (KRW로 설정된 경우 현재 환율로 VND 재계산)
+    const budget = data.budgetKrw[gi]
+      ? Math.round(data.budgetKrw[gi] * 1000 / RATE)
+      : (data.budgets[gi] || 0);
     const remain = budget - total;
     const pct = budget > 0 ? Math.min(Math.round(total / budget * 100), 100) : 0;
     const barClass = pct >= 100 ? 'over' : pct >= 80 ? 'warn' : 'safe';
@@ -4118,7 +4124,13 @@ if (scrollTopBtn) {
     const cur = document.getElementById('bf-cur-'+gi).value;
     const amt = parseFloat(document.getElementById('bf-amt-'+gi).value) || 0;
     if (amt <= 0) { document.getElementById('bf-amt-'+gi).focus(); return; }
-    data.budgets[gi] = cur === 'KRW' ? Math.round(amt * 1000 / 57.4) : Math.round(amt);
+    if (cur === 'KRW') {
+      data.budgetKrw[gi] = Math.round(amt);
+      data.budgets[gi] = Math.round(amt * 1000 / RATE);
+    } else {
+      data.budgetKrw[gi] = 0;
+      data.budgets[gi] = Math.round(amt);
+    }
     save();
     renderPanel(gi);
   };
