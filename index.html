@@ -3960,6 +3960,14 @@ if (scrollTopBtn) {
   if (!Array.isArray(data.budgets) || data.budgets.length < 4)
     data.budgets = [0,0,0,0];
 
+  // 예산 강제 복구 (의정부 50만, 장흥 132만, 옥정 80만, 공통 200만 — 원화→VND@54)
+  const CORRECT_BUDGETS = [9259259, 24444444, 14814814, 37037037];
+  if (!data._budgetFixed) {
+    data.budgets = CORRECT_BUDGETS.slice();
+    data._budgetFixed = true;
+    localStorage.setItem(LEDGER_KEY, JSON.stringify(data));
+  }
+
   function save() {
     localStorage.setItem(LEDGER_KEY, JSON.stringify(data));
     pushToSheets();
