@@ -3960,20 +3960,6 @@ if (scrollTopBtn) {
   if (!Array.isArray(data.budgets) || data.budgets.length < 4)
     data.budgets = [0,0,0,0];
 
-  // 환율 변경 시 KRW 항목 VND 재계산
-  (function migrateRate() {
-    let changed = false;
-    data.groups.forEach(group => {
-      group.forEach(e => {
-        if (e.currency === 'KRW' && e.amount) {
-          const correct = Math.round(e.amount * 1000 / 57.4);
-          if (e.vnd !== correct) { e.vnd = correct; changed = true; }
-        }
-      });
-    });
-    if (changed) localStorage.setItem(LEDGER_KEY, JSON.stringify(data));
-  })();
-
   function save() {
     localStorage.setItem(LEDGER_KEY, JSON.stringify(data));
     pushToSheets();
@@ -3994,7 +3980,11 @@ if (scrollTopBtn) {
   function fmtK(v) { return '≈ ' + vndToKrw(v||0).toLocaleString() + '원'; }
   function getCat(id) { return CATS.find(c => c.id === id) || CATS[CATS.length-1]; }
   function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-  function grpTotal(gi) { return data.groups[gi].reduce((s,e)=>s+(e.vnd||0),0); }
+  function entryVnd(e) {
+    if (e.currency === 'KRW' && e.amount) return Math.round(e.amount * 1000 / RATE);
+    return e.vnd || 0;
+  }
+  function grpTotal(gi) { return data.groups[gi].reduce((s,e)=>s+entryVnd(e),0); }
 
   function updateGrand() {
     const total = data.groups.reduce((s,g)=>s+g.reduce((ss,e)=>ss+(e.vnd||0),0),0);
@@ -4049,7 +4039,7 @@ if (scrollTopBtn) {
 
     // 요약 카드
     const catMap = {};
-    entries.forEach(e => { catMap[e.cat] = (catMap[e.cat]||0) + (e.vnd||0); });
+    entries.forEach(e => { catMap[e.cat] = (catMap[e.cat]||0) + entryVnd(e); });
     let sumHtml = `<div class="ledger-summary">
       <div class="l-sum-card l-total">
         <div class="sc-label">${GROUPS[gi]} 합계</div>
@@ -4097,7 +4087,7 @@ if (scrollTopBtn) {
           </div>
           <div class="l-amt">
             <div class="l-vnd">${e.currency==='KRW' ? (e.amount||0).toLocaleString()+'원' : fmtV(e.vnd)}</div>
-            <div class="l-krw">${e.currency==='KRW' ? '≈ '+fmtV(e.vnd) : fmtK(e.vnd)}</div>
+            <div class="l-krw">${e.currency==='KRW' ? '≈ '+fmtV(entryVnd(e)) : fmtK(e.vnd)}</div>
           </div>
           <button class="l-del" onclick="ldDel(${gi},'${esc(e.id)}')" title="삭제">✕</button>
         </div>`;
