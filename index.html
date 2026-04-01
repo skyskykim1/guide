@@ -3938,7 +3938,8 @@ if (scrollTopBtn) {
 // 가계부 (Ledger)
 (function() {
   const LEDGER_KEY = 'pq-ledger-2026';
-  const RATE = 54; // 1,000 VND = 54원
+  const RATE = 54;        // 1,000 VND = 54원 (예산/합계 표시용)
+  const RATE_VND = 57.4;  // 실제 환율 — 원→동 변환 표시용
   const GROUPS = ['🏠 의정부', '🌿 장흥', '🌸 옥정', '👨‍👩‍👧‍👦 공통'];
   const CATS = [
     { id:'flight', label:'✈️ 항공권',        bg:'#EBF4FF', fg:'#1565C0' },
@@ -4091,7 +4092,7 @@ if (scrollTopBtn) {
           </div>
           <div class="l-amt">
             <div class="l-vnd">${e.currency==='KRW' ? (e.amount||0).toLocaleString()+'원' : fmtV(e.vnd)}</div>
-            <div class="l-krw">${e.currency==='KRW' ? '≈ '+fmtV(e.vnd) : fmtK(e.vnd)}</div>
+            <div class="l-krw">${e.currency==='KRW' ? '≈ '+fmtV(Math.round((e.amount||0)*1000/RATE_VND)) : fmtK(e.vnd)}</div>
           </div>
           <button class="l-del" onclick="ldDel(${gi},'${esc(e.id)}')" title="삭제">✕</button>
         </div>`;
