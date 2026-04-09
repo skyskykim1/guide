@@ -1562,35 +1562,353 @@ section:nth-of-type(odd) { background: transparent; }
   <div class="accordion">
     <div class="accordion-header" onclick="toggleAccordion(this)">💆 불건마 <span class="acc-icon">▼</span></div>
     <div class="accordion-body">
-      <div style="text-align:center;padding:32px 20px;color:var(--text-muted);font-size:0.88rem;">맛집 정보 추후 업데이트 예정</div>
+      <div class="kara-note">💆 공통 예약 — 카카오채널 <strong>뜨밤</strong> · 카톡 <strong>hcm9535</strong> · <strong>hcm9137</strong></div>
+
+      <div style="font-size:0.8rem;font-weight:700;color:#555;margin-bottom:8px;">💆 불건마 / 반건마 업소 — 사진 또는 이름 클릭 시 상세정보</div>
+      <div class="kara-grid">
+
+        <div class="kara-card">
+          <div class="kara-thumb" style="cursor:pointer;" onclick="this.parentElement.querySelector('.kara-details').classList.toggle('open')"><img src="https://xn--9f2bo5gqdn09e85i.com/wp-content/uploads/2024/03/%EB%91%90%EB%B0%94%EC%9D%B4-%EB%A7%88%EC%82%AC%EC%A7%80.webp" alt="두바이 마사지" loading="lazy"></div>
+          <div class="kara-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="kara-name">두바이 마사지</span><span class="badge-hain">불건마</span>
+          </div>
+          <div class="kara-details">
+            <div class="kara-desc">호치민 1군 중심부에 위치한 불건마 업소. 팁 포함 올인원 가격제로 심플하게 이용 가능. 라스트오더 새벽 3시까지.</div>
+            <div class="kara-row">📍 41 Đ. Lê Thị Hồng Gấm, Phường Nguyễn Thái Bình, Quận 1 <a class="kara-mapbtn" href="https://maps.google.com/?q=41+Le+Thi+Hong+Gam+Quan+1+Ho+Chi+Minh" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">⏰ 09:00 ~ 03:00</div>
+            <table class="kara-pt">
+              <tr><th colspan="2">💰 가격표</th></tr>
+              <tr><td>기본코스 (팁포함)</td><td>1,800,000 VND</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="kara-card">
+          <div class="kara-thumb" style="cursor:pointer;" onclick="this.parentElement.querySelector('.kara-details').classList.toggle('open')"><img src="https://xn--9f2bo5gqdn09e85i.com/wp-content/uploads/2026/01/%EC%8D%B8%EB%84%A4%EC%9D%BC-1.png" alt="두바이 마사지 2호점" loading="lazy"></div>
+          <div class="kara-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="kara-name">두바이 마사지 2호점</span><span class="badge-hain">불건마</span>
+          </div>
+          <div class="kara-details">
+            <div class="kara-desc">두바이 마사지 2호점. 1호점과 동일 브랜드로 동일 수준의 서비스. 빌딩 6층 위치. 라스트오더 새벽 3시.</div>
+            <div class="kara-row">📍 1 Phạm Viết Chánh, Phường Nguyễn Cư Trinh, Quận 1 (6층) <a class="kara-mapbtn" href="https://maps.google.com/?q=1+Pham+Viet+Chanh+Quan+1+Ho+Chi+Minh" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">⏰ 09:00 ~ 03:00</div>
+            <table class="kara-pt">
+              <tr><th colspan="2">💰 가격표</th></tr>
+              <tr><td>80분</td><td>1,000,000 VND</td></tr>
+              <tr><td>150분</td><td>7,000,000 VND</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="kara-card">
+          <div class="kara-thumb" style="cursor:pointer;" onclick="this.parentElement.querySelector('.kara-details').classList.toggle('open')"><img src="https://xn--9f2bo5gqdn09e85i.com/wp-content/uploads/2026/01/%EC%8D%B8%EB%84%A4%EC%9D%BC.png" alt="두바이 마사지135" loading="lazy"></div>
+          <div class="kara-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="kara-name">두바이 마사지 135</span><span class="badge-hain">불건마</span>
+          </div>
+          <div class="kara-details">
+            <div class="kara-desc">Calmette 가 위치. 두바이 마사지 계열 3호점. 1군 중심으로 접근 편리.</div>
+            <div class="kara-row">📍 133-135 Đ. Calmette, phường Sài Gòn, Quận 1 <a class="kara-mapbtn" href="https://maps.google.com/?q=133+Calmette+Quan+1+Ho+Chi+Minh" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">⏰ 09:00 ~ 03:00</div>
+            <table class="kara-pt">
+              <tr><th colspan="2">💰 가격표</th></tr>
+              <tr><td>60분</td><td>700,000 VND</td></tr>
+              <tr><td>150분</td><td>7,000,000 VND</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="kara-card">
+          <div class="kara-thumb" style="cursor:pointer;" onclick="this.parentElement.querySelector('.kara-details').classList.toggle('open')"><img src="https://xn--9f2bo5gqdn09e85i.com/wp-content/uploads/2025/04/%ED%95%B4%ED%94%BC%EB%A7%88%EC%82%AC%EC%A7%80%EB%A9%94%EC%9D%B8%EB%A1%9C%EA%B3%A0-1.jpg" alt="해피마사지" loading="lazy"></div>
+          <div class="kara-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="kara-name">해피마사지</span><span class="badge-hain">불건마</span>
+          </div>
+          <div class="kara-details">
+            <div class="kara-desc">팜응우라오 거리 인근 불건마. 1군 배낭여행자 거리 근처 위치. 라스트오더 새벽 2시.</div>
+            <div class="kara-row">📍 17 Đỗ Quang Đẩu, Phường Phạm Ngũ Lão, Quận 1 <a class="kara-mapbtn" href="https://maps.google.com/?q=17+Do+Quang+Dau+Quan+1+Ho+Chi+Minh" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">⏰ 10:00 ~ 02:00</div>
+            <table class="kara-pt">
+              <tr><th colspan="2">💰 가격표</th></tr>
+              <tr><td>40분</td><td>900,000 VND</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="kara-card">
+          <div class="kara-thumb" style="cursor:pointer;" onclick="this.parentElement.querySelector('.kara-details').classList.toggle('open')"><img src="https://xn--9f2bo5gqdn09e85i.com/wp-content/uploads/2024/06/%EA%B2%8C%EC%8B%9C%EA%B8%80-%ED%85%9C%ED%94%8C%EB%A6%BF%EB%9C%A8%EB%B0%A4-%EB%B3%B5%EC%82%AC-7.webp" alt="슈퍼맨 마사지" loading="lazy"></div>
+          <div class="kara-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="kara-name">슈퍼맨 마사지</span><span class="badge-hain">불건마</span>
+          </div>
+          <div class="kara-details">
+            <div class="kara-desc">호치민 7군 탄흥 지역 불건마. 라스트오더 새벽 2시. 7군 방문 시 이용 편리.</div>
+            <div class="kara-row">📍 71 Đ. D1, Tân Hưng, Quận 7, TP.HCM <a class="kara-mapbtn" href="https://maps.google.com/?q=71+D1+Tan+Hung+Quan+7+Ho+Chi+Minh" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">⏰ 10:00 ~ 02:00</div>
+            <table class="kara-pt">
+              <tr><th colspan="2">💰 가격표</th></tr>
+              <tr><td>30분</td><td>800,000 VND</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="kara-card">
+          <div class="kara-thumb" style="cursor:pointer;" onclick="this.parentElement.querySelector('.kara-details').classList.toggle('open')"><img src="https://xn--9f2bo5gqdn09e85i.com/wp-content/uploads/2025/06/%EC%BD%94%EC%8A%A4%ED%94%8C%EB%A0%88%EC%9D%B4%EC%8A%A4%ED%8C%8C%EB%A9%94%EC%9D%B8%EC%82%AC%EC%A7%84.jpg" alt="COSPLAY 스파" loading="lazy"></div>
+          <div class="kara-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="kara-name">COSPLAY 스파</span><span class="badge-local">반건마</span>
+          </div>
+          <div class="kara-details">
+            <div class="kara-desc">호치민 7군 탄흥 위치 반건마 스파. 코스플레이 테마. 영업 10:00~22:00.</div>
+            <div class="kara-row">📍 G19 Đường 3A Phường Tân Hưng, Quận 7 <a class="kara-mapbtn" href="https://maps.google.com/?q=Duong+3A+Tan+Hung+Quan+7+Ho+Chi+Minh" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">⏰ 10:00 ~ 22:00</div>
+            <table class="kara-pt">
+              <tr><th colspan="2">💰 가격표</th></tr>
+              <tr><td>기본코스</td><td>800,000 VND</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="kara-card">
+          <div class="kara-thumb" style="cursor:pointer;" onclick="this.parentElement.querySelector('.kara-details').classList.toggle('open')"><img src="https://xn--9f2bo5gqdn09e85i.com/wp-content/uploads/2025/04/%EB%AA%A8%EB%84%A4%EC%8A%A4%ED%8C%8C%EB%A1%9C%EA%B3%A0%EC%82%AC%EC%A7%84.png" alt="모네 스파" loading="lazy"></div>
+          <div class="kara-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="kara-name">모네 스파</span><span class="badge-local">반건마</span>
+          </div>
+          <div class="kara-details">
+            <div class="kara-desc">호치민 1군 꼬박 거리 위치 반건마. 오전 10:30 오픈. 당일 예약 가능.</div>
+            <div class="kara-row">📍 71/17 Đ. Cô Bắc, Phường Cô Giang, Quận 1 <a class="kara-mapbtn" href="https://maps.google.com/?q=71+Co+Bac+Quan+1+Ho+Chi+Minh" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">⏰ 10:30 ~ 22:00</div>
+            <table class="kara-pt">
+              <tr><th colspan="2">💰 가격표</th></tr>
+              <tr><td>60분</td><td>750,000 VND</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="kara-card">
+          <div class="kara-thumb" style="cursor:pointer;" onclick="this.parentElement.querySelector('.kara-details').classList.toggle('open')"><img src="https://xn--9f2bo5gqdn09e85i.com/wp-content/uploads/2024/06/%EA%B2%8C%EC%8B%9C%EA%B8%80-%ED%85%9C%ED%94%8C%EB%A6%BF%EB%9C%A8%EB%B0%A4-%EB%B3%B5%EC%82%AC-7.webp" alt="루나 마사지" loading="lazy"></div>
+          <div class="kara-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="kara-name">루나 마사지</span><span class="badge-hain">불건마</span>
+          </div>
+          <div class="kara-details">
+            <div class="kara-desc">호치민 7군 푸미흥 지역 불건마. 마사지비+팁 포함 올인원 가격. 라스트오더 00:30.</div>
+            <div class="kara-row">📍 24 Đ. Số 2, Tân Phong, Quận 7 (푸미흥) <a class="kara-mapbtn" href="https://maps.google.com/?q=24+So+2+Tan+Phong+Quan+7+Ho+Chi+Minh" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">⏰ 10:30 ~ 00:30</div>
+            <table class="kara-pt">
+              <tr><th colspan="2">💰 가격표</th></tr>
+              <tr><td>기본코스 (팁포함)</td><td>1,200,000 VND</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="kara-card">
+          <div class="kara-thumb" style="cursor:pointer;" onclick="this.parentElement.querySelector('.kara-details').classList.toggle('open')"><img src="https://xn--9f2bo5gqdn09e85i.com/wp-content/uploads/2024/06/%EA%B2%8C%EC%8B%9C%EA%B8%80-%ED%85%9C%ED%94%8C%EB%A6%BF%EB%9C%A8%EB%B0%A4-%EB%B3%B5%EC%82%AC-7.webp" alt="미우미우 마사지" loading="lazy"></div>
+          <div class="kara-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="kara-name">미우미우 마사지</span><span class="badge-local">건마</span>
+          </div>
+          <div class="kara-details">
+            <div class="kara-desc">1군 중심부 건마. 발마사지·핫스톤·타이마사지 제공. 오전 9시 30분부터 영업.</div>
+            <div class="kara-row">📍 04 Chu Mạnh Trinh, Quận 1, TP.HCM <a class="kara-mapbtn" href="https://maps.google.com/?q=04+Chu+Manh+Trinh+Quan+1+Ho+Chi+Minh" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">⏰ 09:30 ~ 23:00</div>
+            <table class="kara-pt">
+              <tr><th colspan="2">💰 가격표</th></tr>
+              <tr><td>발마사지 (70분)</td><td>360,000 VND</td></tr>
+              <tr><td>핫스톤 (60분)</td><td>420,000 VND</td></tr>
+              <tr><td>타이마사지 (60분)</td><td>450,000 VND</td></tr>
+            </table>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 
   <div class="accordion">
     <div class="accordion-header" onclick="toggleAccordion(this)">🎵 클럽 <span class="acc-icon">▼</span></div>
     <div class="accordion-body">
-      <div style="text-align:center;padding:32px 20px;color:var(--text-muted);font-size:0.88rem;">맛집 정보 추후 업데이트 예정</div>
+      <div class="kara-note">🎵 입장/테이블 예약 — 현장 직접 방문 또는 각 업소 연락처 문의</div>
+
+      <div style="font-size:0.8rem;font-weight:700;color:#555;margin-bottom:8px;">🎵 클럽 / 바 업소 — 사진 또는 이름 클릭 시 상세정보</div>
+      <div class="kara-grid">
+
+        <div class="kara-card">
+          <div class="kara-thumb" style="cursor:pointer;" onclick="this.parentElement.querySelector('.kara-details').classList.toggle('open')"><img src="https://xn--9f2bo5gqdn09e85i.com/wp-content/uploads/2026/03/%EC%8D%B8%EB%84%A4%EC%9D%BC.png" alt="아이돌바" loading="lazy"></div>
+          <div class="kara-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="kara-name">아이돌바 (I DOL Bar)</span><span class="badge-hain">한인</span>
+          </div>
+          <div class="kara-details">
+            <div class="kara-desc">호치민 7군 흥자4 거리 위치. 늦은 영업시간(오전 5시까지)으로 2차 장소로 인기. 클럽+바 복합 형태.</div>
+            <div class="kara-row">📍 50 Khu phố Hưng Gia 4, Tân Phong, Quận 7 <a class="kara-mapbtn" href="https://maps.app.goo.gl/QShng57F1MsAJG7YA" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">⏰ 19:00 ~ 05:00</div>
+            <table class="kara-pt">
+              <tr><th colspan="2">💰 안내</th></tr>
+              <tr><td>입장료 · 테이블 요금</td><td>현장 문의</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="kara-card">
+          <div class="kara-thumb" style="cursor:pointer;" onclick="this.parentElement.querySelector('.kara-details').classList.toggle('open')"><img src="https://xn--9f2bo5gqdn09e85i.com/wp-content/uploads/2024/10/%E3%85%87-1.png" alt="클래시바" loading="lazy"></div>
+          <div class="kara-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="kara-name">클래시바 (CLASSY)</span><span class="badge-hain">한인</span>
+          </div>
+          <div class="kara-details">
+            <div class="kara-desc">호치민 1군 타이반룽 거리 위치. 클래시한 분위기의 한인 바. 예약 추천.</div>
+            <div class="kara-row">📍 8a/e7 Thai Van Lung, Ben Nghe, Quận 1 <a class="kara-mapbtn" href="https://maps.google.com/?q=Thai+Van+Lung+Ben+Nghe+Quan+1+Ho+Chi+Minh" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">⏰ 20:00 ~ 02:00</div>
+            <div class="kara-contact">📞 카톡 joonkim11</div>
+          </div>
+        </div>
+
+        <div class="kara-card">
+          <div class="kara-thumb" style="cursor:pointer;" onclick="this.parentElement.querySelector('.kara-details').classList.toggle('open')"><img src="https://xn--9f2bo5gqdn09e85i.com/wp-content/uploads/2024/07/%EB%91%90%EA%BB%8D.webp" alt="두껍포차" loading="lazy"></div>
+          <div class="kara-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="kara-name">두껍포차</span><span class="badge-hain">한인</span>
+          </div>
+          <div class="kara-details">
+            <div class="kara-desc">1군 팜응우라오 거리 인근 한인 헌팅 포차. 저녁 5시 오픈. 포차 분위기로 가볍게 즐기기 좋음.</div>
+            <div class="kara-row">📍 19 Đ. Bùi Thị Xuân, Phường Phạm Ngũ Lão, Quận 1 <a class="kara-mapbtn" href="https://maps.google.com/?q=19+Bui+Thi+Xuan+Pham+Ngu+Lao+Quan+1+Ho+Chi+Minh" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">⏰ 17:00 ~ 02:00</div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 
   <div class="accordion">
     <div class="accordion-header" onclick="toggleAccordion(this)">✂️ 이발소 <span class="acc-icon">▼</span></div>
     <div class="accordion-body">
-      <div style="text-align:center;padding:32px 20px;color:var(--text-muted);font-size:0.88rem;">맛집 정보 추후 업데이트 예정</div>
+      <div class="kara-note">✂️ 방문 전 Grab 앱에서 주소 검색하여 이동 권장. 라스트오더 1~2시간 전 방문.</div>
+
+      <div style="font-size:0.8rem;font-weight:700;color:#555;margin-bottom:8px;">✂️ 이발소 업소 — 사진 또는 이름 클릭 시 상세정보</div>
+      <div class="kara-grid">
+
+        <div class="kara-card">
+          <div class="kara-thumb" style="cursor:pointer;" onclick="this.parentElement.querySelector('.kara-details').classList.toggle('open')"><img src="https://xn--9f2bo5gqdn09e85i.com/wp-content/uploads/2025/05/%EB%B0%B0%ED%8A%B8%EB%A7%A82%EC%9D%B4%EB%B0%9C%EC%86%8C-%EB%A9%94%EC%9D%B8%EC%82%AC%EC%A7%84.jpg" alt="배트맨2 이발소" loading="lazy"></div>
+          <div class="kara-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="kara-name">배트맨2 이발소</span><span class="badge-hain">한인</span>
+          </div>
+          <div class="kara-details">
+            <div class="kara-desc">호치민 탄빈(Tân Bình) 공항 근처 위치. 라스트오더 밤 9시 30분. 80분 기준 서비스 제공.</div>
+            <div class="kara-row">📍 50A Đ. Trường Sơn, Phường 2, Tân Bình, TP.HCM <a class="kara-mapbtn" href="https://maps.google.com/?q=50A+Truong+Son+Phuong+2+Tan+Binh+Ho+Chi+Minh" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">⏰ 08:30 ~ 23:00 (L.O 21:30)</div>
+            <table class="kara-pt">
+              <tr><th colspan="2">💰 가격표</th></tr>
+              <tr><td>80분 기본코스</td><td>450,000 ~ 600,000 VND</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="kara-card">
+          <div class="kara-thumb" style="cursor:pointer;" onclick="this.parentElement.querySelector('.kara-details').classList.toggle('open')"><img src="https://xn--9f2bo5gqdn09e85i.com/wp-content/uploads/2025/04/%EA%B2%8C%EC%8B%9C%EA%B8%80-%ED%85%9C%ED%94%8C%EB%A6%BF.png" alt="스타이발소" loading="lazy"></div>
+          <div class="kara-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="kara-name">스타이발소 (STAR BARBERSHOP)</span><span class="badge-hain">한인</span>
+          </div>
+          <div class="kara-details">
+            <div class="kara-desc">호치민 1군 응우옌타이빈 위치. 다양한 콤보 코스 제공. 오전 8시부터 영업.</div>
+            <div class="kara-row">📍 110 Nguyễn Công Trứ, Phường Nguyễn Thái Bình, Quận 1 <a class="kara-mapbtn" href="https://maps.google.com/?q=110+Nguyen+Cong+Tru+Quan+1+Ho+Chi+Minh" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">⏰ 08:00 ~ 23:00</div>
+            <table class="kara-pt">
+              <tr><th colspan="2">💰 가격표</th></tr>
+              <tr><td>콤보 코스</td><td>350,000 ~ 950,000 VND</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="kara-card">
+          <div class="kara-thumb" style="cursor:pointer;" onclick="this.parentElement.querySelector('.kara-details').classList.toggle('open')"><img src="https://xn--9f2bo5gqdn09e85i.com/wp-content/uploads/2024/06/%E3%85%86%E3%84%B4%E3%85%87-2.webp" alt="배트맨 이발소" loading="lazy"></div>
+          <div class="kara-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="kara-name">배트맨 이발소</span><span class="badge-hain">한인</span>
+          </div>
+          <div class="kara-details">
+            <div class="kara-desc">호치민 7군 푸미흥 흥자2 위치. 7군 거주자들에게 편리한 이발소. 배트맨2와 동일 브랜드.</div>
+            <div class="kara-row">📍 41 nội khu Hưng Gia 2, Tân Phong, Quận 7 (푸미흥) <a class="kara-mapbtn" href="https://maps.google.com/?q=Hung+Gia+2+Tan+Phong+Quan+7+Ho+Chi+Minh" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">⏰ 08:00 ~ 21:00</div>
+            <table class="kara-pt">
+              <tr><th colspan="2">💰 가격표</th></tr>
+              <tr><td>기본코스</td><td>450,000 VND</td></tr>
+            </table>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 
   <div class="accordion">
     <div class="accordion-header" onclick="toggleAccordion(this)">🍽️ 착석식당 <span class="acc-icon">▼</span></div>
     <div class="accordion-body">
-      <div style="text-align:center;padding:32px 20px;color:var(--text-muted);font-size:0.88rem;">맛집 정보 추후 업데이트 예정</div>
+      <div class="kara-note">🍽️ 착석식당 — 단체 이용 가능 (룸 예약 권장)</div>
+
+      <div style="font-size:0.8rem;font-weight:700;color:#555;margin-bottom:8px;">🍽️ 착석식당 — 사진 또는 이름 클릭 시 상세정보</div>
+      <div class="kara-grid">
+
+        <div class="kara-card">
+          <div class="kara-thumb" style="cursor:pointer;" onclick="this.parentElement.querySelector('.kara-details').classList.toggle('open')"><img src="https://xn--9f2bo5gqdn09e85i.com/wp-content/uploads/2024/06/%EC%8D%B8%EB%84%AC-1.webp" alt="더 조선" loading="lazy"></div>
+          <div class="kara-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="kara-name">더 조선 (THE 조선)</span><span class="badge-hain">한인</span>
+          </div>
+          <div class="kara-details">
+            <div class="kara-desc">호치민 7군 탄퐁 위치 한인 착석식당. 단체 이용 적합. 낮 12시부터 자정까지 영업.</div>
+            <div class="kara-row">📍 11 Đ. Phan Khiêm Ích, Tân Phong, Quận 7 <a class="kara-mapbtn" href="https://maps.google.com/?q=11+Phan+Khiem+Ich+Tan+Phong+Quan+7+Ho+Chi+Minh" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">⏰ 12:00 ~ 00:00</div>
+            <table class="kara-pt">
+              <tr><th colspan="2">💰 가격표</th></tr>
+              <tr><td>1인 코스</td><td>2,000,000 VND</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="kara-card">
+          <div class="kara-thumb" style="cursor:pointer;" onclick="this.parentElement.querySelector('.kara-details').classList.toggle('open')"><img src="https://xn--9f2bo5gqdn09e85i.com/wp-content/uploads/2024/06/%EC%8D%B8%EB%84%AC.webp" alt="금강식당" loading="lazy"></div>
+          <div class="kara-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="kara-name">금강식당</span><span class="badge-hain">한인</span>
+          </div>
+          <div class="kara-details">
+            <div class="kara-desc">호치민 냐베(Nhà Bè) 구역 위치 한인 착석식당. 낮 12시부터 자정까지 영업. 단체 상차림 가능.</div>
+            <div class="kara-row">📍 915/9 Đường Lê Thị Kỉnh, Phước Kiển, Nhà Bè, TP.HCM <a class="kara-mapbtn" href="https://maps.google.com/?q=Le+Thi+Kinh+Phuoc+Kien+Nha+Be+Ho+Chi+Minh" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">⏰ 12:00 ~ 00:00</div>
+            <table class="kara-pt">
+              <tr><th colspan="2">💰 가격표</th></tr>
+              <tr><td>상차림 A</td><td>2,000,000 VND</td></tr>
+            </table>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 
   <div class="accordion">
     <div class="accordion-header" onclick="toggleAccordion(this)">🍜 맛집 <span class="acc-icon">▼</span></div>
     <div class="accordion-body">
-      <div style="text-align:center;padding:32px 20px;color:var(--text-muted);font-size:0.88rem;">맛집 정보 추후 업데이트 예정</div>
+      <div class="kara-note">🍜 타오디엔·호티키 야시장은 저녁 시간대 방문 추천</div>
+
+      <div style="font-size:0.8rem;font-weight:700;color:#555;margin-bottom:8px;">🍜 맛집 / 야시장 — 사진 또는 이름 클릭 시 상세정보</div>
+      <div class="kara-grid">
+
+        <div class="kara-card">
+          <div class="kara-thumb" style="cursor:pointer;" onclick="this.parentElement.querySelector('.kara-details').classList.toggle('open')"><img src="https://xn--9f2bo5gqdn09e85i.com/wp-content/uploads/2024/06/%EA%B2%8C%EC%8B%9C%EA%B8%80-%ED%85%9C%ED%94%8C%EB%A6%BF%EB%9C%A8%EB%B0%A4-%EB%B3%B5%EC%82%AC-7.webp" alt="타오디엔 야시장" loading="lazy"></div>
+          <div class="kara-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="kara-name">타오디엔 야시장</span><span class="badge-local">로컬</span>
+          </div>
+          <div class="kara-details">
+            <div class="kara-desc">호치민 2군(타오디엔) 위치 야시장. 베트남 길거리 음식, 현지 먹거리 다양. 저녁 분위기 좋음.</div>
+            <div class="kara-row">📍 Thảo Điền, Quận 2 (타오디엔 지역) <a class="kara-mapbtn" href="https://maps.google.com/?q=Thao+Dien+Market+Quan+2+Ho+Chi+Minh" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">⏰ 저녁 시간대 (약 17:00 ~)</div>
+          </div>
+        </div>
+
+        <div class="kara-card">
+          <div class="kara-thumb" style="cursor:pointer;" onclick="this.parentElement.querySelector('.kara-details').classList.toggle('open')"><img src="https://xn--9f2bo5gqdn09e85i.com/wp-content/uploads/2024/06/%EA%B2%8C%EC%8B%9C%EA%B8%80-%ED%85%9C%ED%94%8C%EB%A6%BF%EB%9C%A8%EB%B0%A4-%EB%B3%B5%EC%82%AC-7.webp" alt="호티키 야시장" loading="lazy"></div>
+          <div class="kara-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="kara-name">호티키 야시장</span><span class="badge-local">로컬</span>
+          </div>
+          <div class="kara-details">
+            <div class="kara-desc">호치민 10구 호티키 거리 위치. 현지인들이 즐겨 찾는 재래 야시장. 저렴한 베트남 먹거리 가득.</div>
+            <div class="kara-row">📍 Đường Hồ Thị Kỷ, Quận 10 <a class="kara-mapbtn" href="https://maps.google.com/?q=Ho+Thi+Ky+Market+Quan+10+Ho+Chi+Minh" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">⏰ 저녁 시간대 (약 17:00 ~)</div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 
