@@ -1376,34 +1376,302 @@ section:nth-of-type(odd) { background: transparent; }
     <span class="section-title-sub">2026.05.14(목) ~ 05.17(일) · 3박 4일</span>
   </div>
 
-  <!-- 일정 요약 그리드 -->
-  <div class="day-summary-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:24px;">
+  <!-- 요약 그리드 -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px;">
     <div style="background:linear-gradient(135deg,#006064,#0097A7);color:white;border-radius:12px;padding:14px;text-align:center;">
-      <div style="font-size:0.72rem;opacity:.8;margin-bottom:4px;">DAY 1</div>
+      <div style="font-size:0.7rem;opacity:.8;margin-bottom:2px;">DAY 1</div>
       <div style="font-weight:900;font-size:1rem;">5/14 목</div>
-      <div style="font-size:0.75rem;margin-top:6px;opacity:.85;">밤 비행기 출발<br>21:20 인천</div>
+      <div style="font-size:0.72rem;margin-top:5px;opacity:.85;">인천 출발<br>21:15 비행기</div>
     </div>
-    <div style="background:linear-gradient(135deg,#37474F,#546E7A);color:white;border-radius:12px;padding:14px;text-align:center;">
-      <div style="font-size:0.72rem;opacity:.8;margin-bottom:4px;">DAY 2</div>
+    <div style="background:linear-gradient(135deg,#1565C0,#1976D2);color:white;border-radius:12px;padding:14px;text-align:center;">
+      <div style="font-size:0.7rem;opacity:.8;margin-bottom:2px;">DAY 2</div>
       <div style="font-weight:900;font-size:1rem;">5/15 금</div>
-      <div style="font-size:0.75rem;margin-top:6px;opacity:.85;">호찌민 도착<br>일정 업데이트 예정</div>
+      <div style="font-size:0.72rem;margin-top:5px;opacity:.85;">불건마→이발소<br>클럽→가라오케</div>
     </div>
-    <div style="background:linear-gradient(135deg,#4527A0,#7B1FA2);color:white;border-radius:12px;padding:14px;text-align:center;">
-      <div style="font-size:0.72rem;opacity:.8;margin-bottom:4px;">DAY 3</div>
+    <div style="background:linear-gradient(135deg,#6A1B9A,#8E24AA);color:white;border-radius:12px;padding:14px;text-align:center;">
+      <div style="font-size:0.7rem;opacity:.8;margin-bottom:2px;">DAY 3</div>
       <div style="font-weight:900;font-size:1rem;">5/16 토</div>
-      <div style="font-size:0.75rem;margin-top:6px;opacity:.85;">일정 업데이트 예정</div>
+      <div style="font-size:0.72rem;margin-top:5px;opacity:.85;">마사지→쇼핑<br>클럽→가라오케</div>
     </div>
     <div style="background:linear-gradient(135deg,#BF360C,#E64A19);color:white;border-radius:12px;padding:14px;text-align:center;">
-      <div style="font-size:0.72rem;opacity:.8;margin-bottom:4px;">DAY 4</div>
+      <div style="font-size:0.7rem;opacity:.8;margin-bottom:2px;">DAY 4</div>
       <div style="font-weight:900;font-size:1rem;">5/17 일</div>
-      <div style="font-size:0.75rem;margin-top:6px;opacity:.85;">귀국<br>13:00 출발</div>
+      <div style="font-size:0.72rem;margin-top:5px;opacity:.85;">이발소→공항<br>19:25 귀국</div>
     </div>
   </div>
 
-  <div style="text-align:center;padding:32px 20px;color:var(--text-muted);font-size:0.9rem;background:white;border-radius:var(--radius);border:2px dashed var(--border);">
-    📋 상세 일정은 준비 중입니다.<br>
-    <span style="font-size:0.82rem;margin-top:8px;display:block;">Day 1: 5/14 밤 출발(21:20) · Day 4: 5/17 오후 귀국(13:00)</span>
+  <style>
+    .sched-day{border-radius:14px;overflow:hidden;margin-bottom:18px;box-shadow:0 2px 10px rgba(0,0,0,.09);}
+    .sched-day-hdr{padding:12px 18px;color:#fff;font-weight:900;font-size:0.95rem;display:flex;align-items:center;gap:10px;}
+    .sched-table{width:100%;border-collapse:collapse;font-size:0.78rem;background:#fff;}
+    .sched-table th{padding:7px 10px;text-align:left;font-size:0.72rem;color:#555;background:#F5F5F5;border-bottom:1px solid #E0E0E0;white-space:nowrap;}
+    .sched-table td{padding:8px 10px;border-bottom:1px solid #F0F0F0;vertical-align:top;line-height:1.5;}
+    .sched-table tr:last-child td{border-bottom:none;}
+    .sched-table tr:hover td{background:#FAFAFA;}
+    .tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:0.68rem;font-weight:700;white-space:nowrap;}
+    .tag-fly{background:#E3F2FD;color:#1565C0;}
+    .tag-walk{background:#E8F5E9;color:#2E7D32;}
+    .tag-food{background:#FFF8E1;color:#F57F17;}
+    .tag-night{background:#F3E5F5;color:#6A1B9A;}
+    .tag-club{background:#FCE4EC;color:#880E4F;}
+    .tag-sleep{background:#ECEFF1;color:#455A64;}
+    .tag-shop{background:#E0F7FA;color:#006064;}
+    .memo-cell{color:#888;font-size:0.72rem;font-style:italic;}
+    .time-cell{white-space:nowrap;color:#1976D2;font-weight:700;font-size:0.75rem;}
+    .red-row td{background:#FFF3E0 !important;}
+    @media(max-width:600px){
+      .sched-table .hide-m{display:none;}
+    }
+  </style>
+
+  <!-- DAY 1 -->
+  <div class="sched-day">
+    <div class="sched-day-hdr" style="background:linear-gradient(90deg,#006064,#0097A7);">
+      ✈️ DAY 1 &nbsp;·&nbsp; 5월 14일 (목) &nbsp;—&nbsp; 인천 출발
+    </div>
+    <div class="table-wrap">
+    <table class="sched-table">
+      <thead><tr>
+        <th>장소</th><th>교통</th><th>시간</th><th>일정</th><th class="hide-m">식사</th><th class="hide-m">비고</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>인천공항 1터미널</strong></td>
+          <td><span class="tag tag-fly">✈️ 비행기</span></td>
+          <td class="time-cell">21:15</td>
+          <td>3층 E 비엣젯 체크인 카운터</td>
+          <td class="hide-m" style="font-size:0.72rem;color:#555;">🍽️ 스카이허브라운지 동편 (4층 11번 게이트 인근)<br>스카이허브라운지 서편 (4층 42번 게이트 인근)</td>
+          <td class="hide-m memo-cell">공항 라운지 이용</td>
+        </tr>
+        <tr>
+          <td><strong>호찌민 공항 도착</strong></td>
+          <td><span class="tag tag-fly">✈️ 비행기</span></td>
+          <td class="time-cell">00:30</td>
+          <td>현지 공항 도착</td>
+          <td class="hide-m">—</td>
+          <td class="hide-m memo-cell">e심 및 로밍 정상 여부 확인</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
   </div>
+
+  <!-- DAY 2 -->
+  <div class="sched-day">
+    <div class="sched-day-hdr" style="background:linear-gradient(90deg,#1565C0,#1976D2);">
+      🌙 DAY 2 &nbsp;·&nbsp; 5월 15일 (금) &nbsp;—&nbsp; 불건마 · 이발소 · 클럽 · 가라오케
+    </div>
+    <div class="table-wrap">
+    <table class="sched-table">
+      <thead><tr>
+        <th>장소</th><th>교통</th><th>시간</th><th>일정</th><th class="hide-m">식사</th><th class="hide-m">비고</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>불건마</strong></td>
+          <td><span class="tag tag-walk">🚶 도보&그랩</span></td>
+          <td class="time-cell">01:30</td>
+          <td><span class="tag tag-night">💆 불건마</span></td>
+          <td class="hide-m">—</td>
+          <td class="hide-m memo-cell">늦은 시간 평 좋은 곳</td>
+        </tr>
+        <tr>
+          <td><strong>근처 숙소</strong></td>
+          <td><span class="tag tag-walk">🚶 도보&그랩</span></td>
+          <td class="time-cell">03:00 – 10:00</td>
+          <td><span class="tag tag-sleep">😴 숙소 잠자기</span></td>
+          <td class="hide-m">—</td>
+          <td class="hide-m memo-cell">잠만 자자</td>
+        </tr>
+        <tr>
+          <td><strong>근처 식당</strong></td>
+          <td><span class="tag tag-walk">🚶 도보&그랩</span></td>
+          <td class="time-cell">10:00 – 11:00</td>
+          <td>아점 먹기</td>
+          <td class="hide-m"><span class="tag tag-food">🍜 미정 (쌀국수?)</span></td>
+          <td class="hide-m">—</td>
+        </tr>
+        <tr>
+          <td><strong>스타 이발소</strong></td>
+          <td><span class="tag tag-walk">🚶 도보&그랩</span></td>
+          <td class="time-cell">11:30 – 13:00</td>
+          <td><span class="tag tag-night">✂️ 스타이발소</span></td>
+          <td class="hide-m">—</td>
+          <td class="hide-m">—</td>
+        </tr>
+        <tr>
+          <td><strong>근처 카페</strong></td>
+          <td><span class="tag tag-walk">🚶 도보&그랩</span></td>
+          <td class="time-cell">13:00 – 14:00</td>
+          <td>카페</td>
+          <td class="hide-m"><span class="tag tag-food">☕ 코코넛커피?</span></td>
+          <td class="hide-m">—</td>
+        </tr>
+        <tr>
+          <td><strong>메트로폴 호텔</strong></td>
+          <td><span class="tag tag-walk">🚶 도보&그랩</span></td>
+          <td class="time-cell">15:00</td>
+          <td>일실 체크인</td>
+          <td class="hide-m">—</td>
+          <td class="hide-m">—</td>
+        </tr>
+        <tr>
+          <td><strong>부이비엔 여행자거리</strong></td>
+          <td><span class="tag tag-walk">🚶 도보&그랩</span></td>
+          <td class="time-cell">16:00</td>
+          <td><span class="tag tag-shop">🚶 거리 탐방</span></td>
+          <td class="hide-m">—</td>
+          <td class="hide-m memo-cell">간단하게 바 들러보기</td>
+        </tr>
+        <tr>
+          <td><strong>COCO 클럽</strong></td>
+          <td><span class="tag tag-walk">🚶 도보&그랩</span></td>
+          <td class="time-cell">17:00</td>
+          <td><span class="tag tag-club">🎵 클럽</span></td>
+          <td class="hide-m">—</td>
+          <td class="hide-m memo-cell">클럽 즐기기</td>
+        </tr>
+        <tr>
+          <td><strong>가라오케</strong></td>
+          <td><span class="tag tag-walk">🚶 도보&그랩</span></td>
+          <td class="time-cell">19:00</td>
+          <td><span class="tag tag-night">🎤 가라오케</span></td>
+          <td class="hide-m"><span class="tag tag-food">🍜 짜파게티</span></td>
+          <td class="hide-m memo-cell">업소 미정</td>
+        </tr>
+        <tr>
+          <td><strong>메트로폴 호텔</strong></td>
+          <td><span class="tag tag-walk">🚶 도보&그랩</span></td>
+          <td class="time-cell">시간 미정</td>
+          <td><span class="tag tag-sleep">😴 귀숙</span></td>
+          <td class="hide-m">—</td>
+          <td class="hide-m">—</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- DAY 3 -->
+  <div class="sched-day">
+    <div class="sched-day-hdr" style="background:linear-gradient(90deg,#6A1B9A,#8E24AA);">
+      🎯 DAY 3 &nbsp;·&nbsp; 5월 16일 (토) &nbsp;—&nbsp; 마사지 · 쇼핑 · 클럽 · 가라오케
+    </div>
+    <div class="table-wrap">
+    <table class="sched-table">
+      <thead><tr>
+        <th>장소</th><th>교통</th><th>시간</th><th>일정</th><th class="hide-m">식사</th><th class="hide-m">비고</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>메트로폴 호텔</strong></td>
+          <td>—</td>
+          <td class="time-cell">10:00 – 12:00</td>
+          <td>기상 및 아점</td>
+          <td class="hide-m"><span class="tag tag-food">🍜 미정 (숙취해소)</span></td>
+          <td class="hide-m">—</td>
+        </tr>
+        <tr>
+          <td><strong>안마 / 불건마 / 이발소</strong></td>
+          <td><span class="tag tag-walk">🚶 도보&그랩</span></td>
+          <td class="time-cell">12:00 – 13:30</td>
+          <td><span class="tag tag-night">💆 마사지 계열</span></td>
+          <td class="hide-m">—</td>
+          <td class="hide-m memo-cell">업소 미정</td>
+        </tr>
+        <tr>
+          <td><strong>안마 / 불건마 / 이발소</strong></td>
+          <td><span class="tag tag-walk">🚶 도보&그랩</span></td>
+          <td class="time-cell">14:00 – 15:30</td>
+          <td><span class="tag tag-night">💆 마사지 계열</span></td>
+          <td class="hide-m">—</td>
+          <td class="hide-m memo-cell">업소 미정</td>
+        </tr>
+        <tr>
+          <td><strong>쇼핑 및 저녁</strong></td>
+          <td><span class="tag tag-walk">🚶 도보&그랩</span></td>
+          <td class="time-cell">16:00 – 17:00</td>
+          <td><span class="tag tag-shop">🛍️ 쇼핑</span></td>
+          <td class="hide-m"><span class="tag tag-food">🍽️ 미정</span></td>
+          <td class="hide-m">—</td>
+        </tr>
+        <tr>
+          <td><strong>클럽</strong></td>
+          <td><span class="tag tag-walk">🚶 도보&그랩</span></td>
+          <td class="time-cell">17:00 – 19:00</td>
+          <td><span class="tag tag-club">🎵 클럽</span></td>
+          <td class="hide-m">—</td>
+          <td class="hide-m memo-cell">업소 미정</td>
+        </tr>
+        <tr class="red-row">
+          <td><strong>가라오케</strong></td>
+          <td><span class="tag tag-walk">🚶 도보&그랩</span></td>
+          <td class="time-cell" style="color:#C62828;">19:00 – 21:30</td>
+          <td><span class="tag tag-night">🎤 가라오케</span></td>
+          <td class="hide-m">—</td>
+          <td class="hide-m memo-cell" style="color:#C62828;font-weight:700;">업소 미정 ⚠️</td>
+        </tr>
+        <tr>
+          <td><strong>메트로폴 호텔</strong></td>
+          <td><span class="tag tag-walk">🚶 도보&그랩</span></td>
+          <td class="time-cell">시간 미정</td>
+          <td><span class="tag tag-sleep">😴 귀숙</span></td>
+          <td class="hide-m">—</td>
+          <td class="hide-m">—</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- DAY 4 -->
+  <div class="sched-day">
+    <div class="sched-day-hdr" style="background:linear-gradient(90deg,#BF360C,#E64A19);">
+      🏠 DAY 4 &nbsp;·&nbsp; 5월 17일 (일) &nbsp;—&nbsp; 이발소 → 공항 → 귀국
+    </div>
+    <div class="table-wrap">
+    <table class="sched-table">
+      <thead><tr>
+        <th>장소</th><th>교통</th><th>시간</th><th>일정</th><th class="hide-m">식사</th><th class="hide-m">비고</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>메트로폴 호텔</strong></td>
+          <td>—</td>
+          <td class="time-cell">07:00</td>
+          <td>기상</td>
+          <td class="hide-m">—</td>
+          <td class="hide-m">—</td>
+        </tr>
+        <tr>
+          <td><strong>이발소</strong></td>
+          <td><span class="tag tag-walk">🚶 도보&그랩</span></td>
+          <td class="time-cell">오전</td>
+          <td><span class="tag tag-night">✂️ 이발소</span></td>
+          <td class="hide-m">—</td>
+          <td class="hide-m memo-cell">일찍 여는 곳으로</td>
+        </tr>
+        <tr>
+          <td><strong>호찌민 공항</strong></td>
+          <td><span class="tag tag-walk">🚶 도보&그랩</span></td>
+          <td class="time-cell">12:30</td>
+          <td>공항 이동 / 체크아웃</td>
+          <td class="hide-m"><span class="tag tag-food">🍽️ 공항에서 대충 때우기</span></td>
+          <td class="hide-m">—</td>
+        </tr>
+        <tr>
+          <td><strong>인천공항 1터미널</strong></td>
+          <td><span class="tag tag-fly">✈️ 비행기</span></td>
+          <td class="time-cell">19:25</td>
+          <td>인천공항 도착</td>
+          <td class="hide-m">—</td>
+          <td class="hide-m memo-cell">🏠 집 귀가</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
 </section>
 
 
